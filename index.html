@@ -137,20 +137,30 @@
   </div>
 
   <script>
-    function login() {
-      const user = document.getElementById('username').value.trim();
-      const pass = document.getElementById('password').value.trim();
-      const errorElement = document.getElementById('error');
+    <script>
+  function login() {
+    const user = document.getElementById('username').value.trim();
+    const pass = document.getElementById('password').value.trim();
+    const errorElement = document.getElementById('error');
 
-      if (user === 'Orlandow' && pass === 'GandaNgGFKoMen') {
-        document.getElementById('loginPage').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
-        errorElement.innerText = '';
-        showSection('home');
-      } else {
-        errorElement.innerText = 'WHO YOU IMPOSTOR?!';
-      }
+    if (user === 'Orlandow' && pass === 'GandaNgGFKoMen') {
+      // Hide the login page
+      document.getElementById('loginPage').style.display = 'none';
+      
+      // Show the main content
+      document.getElementById('mainContent').style.display = 'block';
+      
+      // Clear the error message if login is successful well si orly siya
+      errorElement.innerText = '';
+      
+      // Show the home section by default kasi wala lang
+      showSection('home');
+    } else {
+      // Show error message if login fails kasi impostor eh
+      errorElement.innerText = 'WHO YOU IMPOSTOR?!';
     }
+  }
+</script>
 
     function showSection(id) {
       document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
