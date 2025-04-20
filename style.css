@@ -12,6 +12,8 @@ body {
   align-items: center;
   height: 100vh;
   background-color: #d4f4dd;
+  z-index: 9999;
+  position: relative;
 }
 
 #loginContainer {
