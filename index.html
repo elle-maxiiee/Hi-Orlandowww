@@ -79,47 +79,22 @@
       <button onclick="startGame()">Play Again</button>
     </section>
 
-<!-- Gallery -->
 <section id="gallery">
   <h1>📸 Our Sweet Memories 📸</h1>
   <div class="slideshow-container">
-    <div class="gallery-slide" onclick="openModal(this)">
-      <img src="images/first.JPG" alt="First Image">
-    </div>
-    <div class="gallery-slide" onclick="openModal(this)">
-      <img src="images/second.JPG" alt="Second Image">
-    </div>
-    <div class="gallery-slide" onclick="openModal(this)">
-      <img src="images/third.JPG" alt="Third Image">
-    </div>
-    <div class="gallery-slide" onclick="openModal(this)">
-      <img src="images/xoxo.JPEG" alt="Xoxo Image">
-    </div>
-    <div class="gallery-slide" onclick="openModal(this)">
-      <img src="images/heart.JPEG" alt="Heart Image">
-    </div>
-    <div class="gallery-slide" onclick="openModal(this)">
-      <img src="images/club.JPEG" alt="Club Image">
-    </div>
-    <div class="gallery-slide" onclick="openModal(this)">
-      <img src="images/Life4Cuts.JPG" alt="Life Cuts Image">
-    </div>
-    <div class="gallery-slide" onclick="openModal(this)">
-      <img src="images/elevator.JPG" alt="Elevator Image">
-    </div>
-    <div class="gallery-slide" onclick="openModal(this)">
-      <img src="images/subway.JPG" alt="Subway Image">
-    </div>
-    <a class="prev" onclick="plusSlides(-1)">❮</a>
-    <a class="next" onclick="plusSlides(1)">❯</a>
+    <button class="prev" onclick="changeSlide(-1)">❮</button>
+    <img class="gallery-slide" src="images/first.JPG" alt="1">
+    <img class="gallery-slide" src="images/second.JPG" alt="2">
+    <img class="gallery-slide" src="images/third.JPG" alt="3">
+    <img class="gallery-slide" src="images/xoxo.JPEG" alt="4">
+    <img class="gallery-slide" src="images/heart.JPEG" alt="5">
+    <img class="gallery-slide" src="images/club.JPEG" alt="6">
+    <img class="gallery-slide" src="images/Life4Cuts.JPG" alt="7">
+    <img class="gallery-slide" src="images/elevator.JPG" alt="8">
+    <img class="gallery-slide" src="images/subway.JPG" alt="9">
+    <button class="next" onclick="changeSlide(1)">❯</button>
   </div>
 </section>
-
-<!-- Modal for Full Image -->
-<div id="galleryModal" class="gallery-modal">
-  <span class="close" onclick="closeModal()">&times;</span>
-  <img id="modalImage" src="" alt="Full View">
-</div>
     
     <!-- Quiz -->
       <section id="quiz">
@@ -196,21 +171,6 @@
         basket.style.left = ${e.clientX}px;
       }
     });
-
-    <!-- JavaScript for Modal -->
-<script>
-  // Function to open the modal with the clicked image
-  function openModal(imageElement) {
-    const modal = document.getElementById("galleryModal");
-    const modalImage = document.getElementById("modalImage");
-    modal.style.display = "flex";
-    modalImage.src = imageElement.querySelector("img").src;
-  }
-
-  // Function to close the modal
-  function closeModal() {
-    document.getElementById("galleryModal").style.display = "none";
-  }
 
 // Lightbox
 function expandImage(imgElement) {
@@ -373,55 +333,25 @@ loadNextQuestion();
   });
 
   // ✅ GALLERY SLIDESHOW
-  let gallerySlideIndex = 0;
-  const gallerySlides = document.querySelectorAll('.gallery-slide');
+  let currentSlide = 0;
+const slides = document.querySelectorAll(".gallery-slide");
 
-  function showGallerySlides(index) {
-    gallerySlides.forEach((slide, i) => {
-      slide.classList.remove('active');
-      if (i === index) slide.classList.add('active');
-    });
-  }
-
-  function plusSlides(n) {
-    gallerySlideIndex += n;
-    if (gallerySlideIndex >= gallerySlides.length) gallerySlideIndex = 0;
-    if (gallerySlideIndex < 0) gallerySlideIndex = gallerySlides.length - 1;
-    showGallerySlides(gallerySlideIndex);
-  }
-
-  showGallerySlides(gallerySlideIndex); // initialize
-
-  // ✅ HEART MESSAGES
-  const defaultNotes = [
-  "You love me even when I am big na",
-  "Sumakses ka kahit step by the step",
-  "Monthsarry ngani ngayonnnnn",
-  "Sana nakaligo kana boss",
-  "Gusto ko malamig"
-];
-
-function addStickyNote(message = null) {
-  const pinBoard = document.getElementById("pinBoard");
-  const input = document.getElementById("newMessage");
-
-  const noteText = message || input.value.trim();
-  if (!noteText) return;
-
-  const note = document.createElement("div");
-  note.className = "sticky-note";
-  note.textContent = noteText;
-
-  pinBoard.appendChild(note);
-
-  if (!message) input.value = "";
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.style.display = i === index ? "block" : "none";
+  });
 }
 
-// Load default notes on page load
-window.addEventListener("DOMContentLoaded", () => {
-  defaultNotes.forEach(msg => addStickyNote(msg));
-});
+function changeSlide(direction) {
+  currentSlide += direction;
+  if (currentSlide >= slides.length) currentSlide = 0;
+  if (currentSlide < 0) currentSlide = slides.length - 1;
+  showSlide(currentSlide);
+}
 
+// Initialize slideshow
+showSlide(currentSlide);
+  
   // ✅ QUIZ SECTION
   const questions = [
     {
