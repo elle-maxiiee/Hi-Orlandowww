@@ -115,29 +115,11 @@
     </section>
 
     <!-- Quiz -->
-    <section id="quiz">
-  <h1>Random Questions na P'wedeng Pag-awayan</h1>
-
-  <div class="quiz-box">
-    <p>What is my favorite drink?</p>
-    <button onclick="checkAnswer(this, true)">Milk Tea</button>
-    <button onclick="checkAnswer(this, false)">Coffee</button>
-    <button onclick="checkAnswer(this, false)">Softdrinks</button>
-  </div>
-
-  <div class="quiz-box">
-    <p>Who are you?</p>
-    <button onclick="checkAnswer(this, false)">Orlando Lopez</button>
-    <button onclick="checkAnswer(this, false)">Orly</button>
-    <button onclick="checkAnswer(this, true)">Lovie</button>
-  </div>
-
-  <div class="quiz-box">
-    <p>Anong oras ako natutulog?</p>
-    <button onclick="checkAnswer(this, false)">11:00 PM</button>
-    <button onclick="checkAnswer(this, false)">1:00 AM</button>
-    <button onclick="checkAnswer(this, true)">12:30 AM</button>
-  </div>
+   <section id="quiz">
+  <h1>🎲 Random Questions na P'wedeng Pag-awayan 🎲</h1>
+  <div id="quiz-container"></div>
+  <p id="quiz-message"></p>
+  <p id="score-display">Score: 0</p>
 </section>
 
     <!-- Playlist -->
@@ -266,55 +248,84 @@ function closeLightbox() {
     answer: "12:30 AM"
   }
 ];
+const quizData = [
+  {
+    question: "What is my favorite drink?",
+    options: ["Milk Tea", "Coffee", "Softdrinks"],
+    correct: "Milk Tea",
+    funMessage: "Yieeee~ Alam mo ‘to, syempre favorite ko yan!"
+  },
+  {
+    question: "Who are you?",
+    options: ["Orlando Lopez", "Orly", "Lovie"],
+    correct: "Lovie",
+    funMessage: "Tamaaa! Ikaw ang lovie ko 😚"
+  },
+  {
+    question: "Anong oras ako natutulog?",
+    options: ["11:00 PM", "1:00 AM", "12:30 AM"],
+    correct: "12:30 AM",
+    funMessage: "Oo nga! Lagi mo akong pinapaalalang matulog 😴"
+  },
+  {
+    question: "What’s our favorite bonding?",
+    options: ["Kain", "Laro", "Tulog"],
+    correct: "Laro",
+    funMessage: "SausageMan moments is life~ 🎮"
+  },
+  {
+    question: "Saan tayo unang nag-date?",
+    options: ["SM", "Jollibee", "Online"],
+    correct: "Online",
+    funMessage: "Kahit virtual date pa yan, it’s still special 💞"
+  }
+];
+let currentIndex = 0;
+let score = 0;
 
-let currentQuestionIndex = 0;
-
-function loadQuestion() {
-  const currentQuestion = quizData[currentQuestionIndex];
-  document.getElementById("question").innerText = currentQuestion.question;
-
-  // Clear previous options
-  const optionsContainer = document.getElementById("options");
-  optionsContainer.innerHTML = '';
-
-  // Create new options as clickable buttons
-  currentQuestion.options.forEach(option => {
-    const optionButton = document.createElement('button');
-    optionButton.innerText = option;
-    optionButton.classList.add('quiz-option');
-    optionButton.onclick = () => checkAnswer(option);
-    optionsContainer.appendChild(optionButton);
-  });
-
-  // Hide the next button until an answer is selected
-  document.getElementById("nextButton").style.display = "none";
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
 }
 
-function checkAnswer(selectedOption) {
-  const correctAnswer = quizData[currentQuestionIndex].answer;
-  if (selectedOption === correctAnswer) {
-    alert("Galing nandaya to sha");
-  } else {
-    alert("Impostor talaga");
+function showQuestion() {
+  const container = document.getElementById("quiz-container");
+  const message = document.getElementById("quiz-message");
+  message.textContent = "";
+
+  if (currentIndex >= quizData.length) {
+    container.innerHTML = "<h3>🎉 Quiz Finished! Your Score: " + score + "/" + quizData.length + "</h3>";
+    return;
   }
 
-  // Show the next button after an answer is selected
-  document.getElementById("nextButton").style.display = "inline-block";
+  const q = quizData[currentIndex];
+  container.innerHTML = `
+    <div class="quiz-box">
+      <p>${q.question}</p>
+      ${shuffle(q.options).map(option => 
+        `<button onclick="checkAnswer('${option}', '${q.correct}', '${q.funMessage}')">${option}</button>`
+      ).join("")}
+    </div>
+  `;
 }
 
-function nextQuestion() {
-  currentQuestionIndex++;
-  if (currentQuestionIndex < quizData.length) {
-    loadQuestion(); // Load the next question
+function checkAnswer(selected, correct, funMessage) {
+  const message = document.getElementById("quiz-message");
+  if (selected === correct) {
+    score++;
+    message.textContent = "✔️ Correct! " + funMessage;
   } else {
-    alert("Galing, p'wede na mag-away! 🎉");
-    // Optionally, you could show the result or restart the quiz
+    message.textContent = "❌ Mali! Pero okay lang, cute ka pa rin 😘";
   }
+  document.getElementById("score-display").textContent = `Score: ${score}`;
+  currentIndex++;
+  setTimeout(showQuestion, 1500);
 }
 
-// Initial load of the first question
-loadQuestion();
-  
+document.addEventListener("DOMContentLoaded", () => {
+  quizData = shuffle(quizData);
+  showQuestion();
+});
+    
   </script>
 </body>
 </html>
