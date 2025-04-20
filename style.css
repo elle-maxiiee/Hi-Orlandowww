@@ -202,15 +202,20 @@ section.active {
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* Slideshow Gallery */
+/* Gallery Slideshow */
 .slideshow-container {
   position: relative;
   max-width: 720px;
   margin: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  background-color: #fff;
 }
 
 .gallery-slide {
   display: none;
+  text-align: center;
 }
 
 .gallery-slide.active {
@@ -218,33 +223,57 @@ section.active {
 }
 
 .gallery-slide img {
-  width: 100%;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 200px;
+  height: auto;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery-slide img:hover {
+  transform: scale(1.05);
 }
 
 .prev, .next {
   cursor: pointer;
   position: absolute;
-  top: 45%;
+  top: 50%;
+  transform: translateY(-50%);
   width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: #fff;
+  padding: 10px;
+  color: #ffffff;
   font-weight: bold;
   font-size: 24px;
-  transition: 0.3s ease;
-  border-radius: 0 3px 3px 0;
   background-color: rgba(0,0,0,0.3);
+  border-radius: 50%;
+  user-select: none;
+}
+
+.prev {
+  left: 10px;
 }
 
 .next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
+  right: 10px;
 }
 
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.6);
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 /* Heart Messages */
