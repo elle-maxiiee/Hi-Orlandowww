@@ -103,16 +103,22 @@
 </section>
 
     <!-- Messages -->
-    <section id="messages">
-      <h1>💬 Animated Heart Messages 💬</h1>
-      <div class="heart-container" id="floatingHearts"></div>
-      <div class="message-box">
-        <p>You’re the reason why this world is not so bad after all.</p>
-        <p>You love me even when I am big na</p>
-        <p>Sumakses ka kahit step by the step</p>
-        <p>Monthsarry ngani ngayonnnnn</p>
-      </div>
-    </section>
+   <section id="animatedMessages">
+  <h1>💌 Animated Heart Messages 💌</h1>
+  <div class="heart-message-container" id="heartMessages">
+    <div class="heart-msg">💖 You’re the reason why this world is not so bad after all</div>
+    <div class="heart-msg">💖 You love me even when I am big na</div>
+    <div class="heart-msg">💖 Sumakses ka kahit step by the step</div>
+    <div class="heart-msg">💖 Monthsarry ngani ngayonnnnn</div>
+    <div class="heart-msg">💖 Sana nakaligo kana boss</div>
+    <div class="heart-msg">💖 Gusto ko malamig</div>
+  </div>
+
+  <div class="heart-input-container">
+    <input type="text" id="customHeartMessage" placeholder="Type your message here, Landooo 💕" />
+    <button onclick="addHeartMessage()">Add Message</button>
+  </div>
+</section>
 
     <!-- Quiz -->
    <section id="quiz">
@@ -224,12 +230,51 @@ function closeLightbox() {
 
     // Heart Messages
     setInterval(() => {
-   const heart = document.createElement('div');
-      heart.className = 'floating-heart';
-      heart.style.left = Math.random() * 100 + 'vw';
-      document.getElementById('floatingHearts').appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
-    }, 400);
+   const messages = [
+  "You’re the reason why this world is not so bad after all",
+  "You love me even when I am big na",
+  "Sumakses ka kahit step by the step",
+  "Monthsarry ngani ngayonnnnn",
+  "Sana nakaligo kana boss",
+  "Gusto ko malamig"
+];
+
+function createHeart(message) {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.textContent = message;
+
+  // Randomize position and size
+  heart.style.left = Math.random() * 90 + "%";
+  heart.style.fontSize = Math.random() * 8 + 14 + "px";
+
+  document.getElementById("heartContainer").appendChild(heart);
+
+  // Remove after animation
+  setTimeout(() => heart.remove(), 8000);
+}
+
+function launchInitialHearts() {
+  messages.forEach((msg, index) => {
+    setTimeout(() => createHeart(msg), index * 1000);
+  });
+
+  setInterval(() => {
+    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+    createHeart(randomMessage);
+  }, 4000);
+}
+
+function addHeartMessage() {
+  const input = document.getElementById("customHeartMsg");
+  const msg = input.value.trim();
+  if (msg) {
+    createHeart(msg);
+    input.value = "";
+  }
+}
+
+window.addEventListener("DOMContentLoaded", launchInitialHearts);
 
     // Quiz
     const questions = [
