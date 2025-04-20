@@ -98,23 +98,17 @@
     </section>
 
     <!-- Messages -->
-     <section id="animatedMessages">
-      <h1>💌 Animated Heart Messages 💌</h1>
-      <div class="heart-message-container" id="heartMessages">
-        <div class="heart-msg">💖 You’re the reason why this world is not so bad after all</div>
-        <div class="heart-msg">💖 You love me even when I am big na</div>
-        <div class="heart-msg">💖 Sumakses ka kahit step by the step</div>
-        <div class="heart-msg">💖 Monthsarry ngani ngayonnnnn</div>
-        <div class="heart-msg">💖 Sana nakaligo kana boss</div>
-        <div class="heart-msg">💖 Gusto ko malamig</div>
-      </div>
+     <!-- Messages -->
+<section id="messages">
+  <h1>📌 Our Little Pin Board 📌</h1>
+  <div id="pinBoard"></div>
 
-      <div class="heart-input-container">
-        <input type="text" id="customHeartMessage" placeholder="Type your message here, Landooo 💕" />
-        <button onclick="addHeartMessage()">Add Message</button>
-      </div>
-    </section>
-    
+  <div class="message-input-container">
+    <input type="text" id="newMessage" placeholder="Type a sweet message here 💌" />
+    <button onclick="addStickyNote()">Pin It</button>
+  </div>
+</section>
+
     <!-- Quiz -->
       <section id="quiz">
       <h1>🎉 Random Questions na P'wedeng Pag-awayan 🎉</h1>
@@ -216,26 +210,34 @@
   showGallerySlides(gallerySlideIndex); // initialize
 
   // ✅ HEART MESSAGES
-  const heartMessages = [
-    "You’re the reason why this world is not so bad after all",
-    "You love me even when I am big na",
-    "Sumakses ka kahit step by the step",
-    "Monthsarry ngani ngayonnnnn",
-    "Sana nakaligo kana boss",
-    "Gusto ko malamig"
-  ];
+  const defaultNotes = [
+  "You love me even when I am big na",
+  "Sumakses ka kahit step by the step",
+  "Monthsarry ngani ngayonnnnn",
+  "Sana nakaligo kana boss",
+  "Gusto ko malamig"
+];
 
-  function addHeartMessage() {
-    const input = document.getElementById("customHeartMessage");
-    const msg = input.value.trim();
-    if (msg) {
-      const heart = document.createElement("div");
-      heart.className = "heart-msg";
-      heart.textContent = "💖 " + msg;
-      document.getElementById("heartMessages").appendChild(heart);
-      input.value = "";
-    }
-  }
+function addStickyNote(message = null) {
+  const pinBoard = document.getElementById("pinBoard");
+  const input = document.getElementById("newMessage");
+
+  const noteText = message || input.value.trim();
+  if (!noteText) return;
+
+  const note = document.createElement("div");
+  note.className = "sticky-note";
+  note.textContent = noteText;
+
+  pinBoard.appendChild(note);
+
+  if (!message) input.value = "";
+}
+
+// Load default notes on page load
+window.addEventListener("DOMContentLoaded", () => {
+  defaultNotes.forEach(msg => addStickyNote(msg));
+});
 
   // ✅ QUIZ SECTION
   const questions = [
