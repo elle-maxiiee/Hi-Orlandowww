@@ -277,38 +277,80 @@ section.active {
 }
 
 /* Heart Messages */
-.heart-container {
-  position: relative;
-  height: 150px;
-  overflow: hidden;
-  background-color: #e0f7fa;
-  border-radius: 12px;
-  margin-bottom: 20px;
-}
-
-.floating-heart {
-  width: 24px;
-  height: 24px;
-  background-image: url('images/heart.JPG');
-  background-size: cover;
-  position: absolute;
-  animation: floatHeart 5s linear infinite;
-}
-
-@keyframes floatHeart {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-150px); opacity: 0; }
-}
-
-.message-box {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+#animatedMessages {
   text-align: center;
-  font-size: 18px;
-  max-width: 500px;
-  margin: 0 auto;
+  background-color: #fef9f9;
+  padding: 40px 20px;
+}
+
+.heart-message-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.heart-msg {
+  background-color: #ffccd5;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 0 15px #ff87ab;
+  animation: pulse 2s infinite;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.heart-msg:hover {
+  transform: scale(1.1) rotate(-2deg);
+  animation: bounce 1s ease;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 15px #ff87ab;
+  }
+  50% {
+    box-shadow: 0 0 30px #ffa5c3;
+  }
+}
+
+@keyframes bounce {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.heart-input-container {
+  margin-top: 30px;
+}
+
+.heart-input-container input {
+  padding: 10px;
+  border: 2px solid #ffb6c1;
+  border-radius: 20px;
+  width: 60%;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.heart-input-container button {
+  padding: 10px 18px;
+  background-color: #ff87ab;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.heart-input-container button:hover {
+  background-color: #e56b91;
 }
 
 /* Quiz Section */
