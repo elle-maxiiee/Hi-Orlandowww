@@ -81,8 +81,8 @@ section.active {
 }
 
 .home-image {
-  width: 80%;
-  max-width: 400px;
+  width: 720px;
+  height: 1280px;
   border-radius: 20px;
   margin-top: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
