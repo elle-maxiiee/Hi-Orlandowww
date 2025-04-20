@@ -1,15 +1,310 @@
-our-little-world/
-│
-├── index.html
-├── style.css
-├── .nojekyll
-└── images/
-    ├── first.jpg
-    ├── second.jpg
-    └── third.jpg
-    ├── Life4Cuts.jpg
-    ├── xoxo.jpg
-    └── club.jpg
-    ├── heart.jpg
-    ├── subway.jpg
-    └── elevator.jpg
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hi Orlandowww</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0fff5;
+    }
+    nav {
+      background-color: #b2dfdb;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+    }
+    nav a {
+      text-decoration: none;
+      color: #004d40;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    section {
+      display: none;
+      padding: 40px;
+      text-align: center;
+    }
+    .active {
+      display: block;
+    }
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: radial-gradient(circle at 10px 10px, red, pink);
+      border-radius: 50% 50% 0 0;
+      transform: rotate(-45deg);
+    }
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: radial-gradient(circle at 10px 10px, red, pink);
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -15px;
+      left: 0;
+    }
+    .heart::after {
+      left: 15px;
+      top: 0;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(80vh);
+        opacity: 0;
+      }
+    }
+    .gallery img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin: 10px;
+      transition: transform 0.3s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    #loginPage, #mainContent {
+      display: none;
+    }
+    #loginContainer {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+      margin: 10% auto;
+      width: 300px;
+    }
+    input, button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #80cbc4;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .card-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .flashcard {
+      width: 200px;
+      height: 120px;
+      perspective: 1000px;
+    }
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      position: relative;
+    }
+    .card-inner.flipped {
+      transform: rotateY(180deg);
+    }
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      padding: 10px;
+    }
+    .card-front {
+      background-color: #c8e6c9;
+      color: #2e7d32;
+    }
+    .card-back {
+      background-color: #a5d6a7;
+      color: #1b5e20;
+      transform: rotateY(180deg);
+    }
+    #basket {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 40px;
+      background: #ffcc80;
+      border-radius: 10px 10px 0 0;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body oncontextmenu="return false">
+  <div id="loginPage">
+    <div id="loginContainer">
+      <h2>HIIIII LOVIEEE!!! 💚</h2>
+      <input type="text" id="username" placeholder="Username" />
+      <input type="password" id="password" placeholder="Password" />
+      <button onclick="login()">Login</button>
+      <p id="error" style="color:red;"></p>
+    </div>
+  </div>
+
+  <div id="mainContent">
+    <nav>
+      <a onclick="showSection('home')">🏠 Home</a>
+      <a onclick="showSection('reasons')">💌 Reasons I Love You</a>
+      <a onclick="showSection('game')">🎮 Heart Catcher Game</a>
+      <a onclick="showSection('gallery')">📸 Photo Gallery</a>
+      <a onclick="showSection('playlist')">🎶 Our Playlist</a>
+    </nav>
+
+    <section id="home" class="active">
+      <h1>HELLO ORLANDO LOPEZZZZZZ 💚</h1>
+      <p>This is for today's event, thank you for coming this far with me even with multiple of aways </p>
+      <p>If you're still asking yourself why you? Well, it's because of even after countless of mood  </p>
+      <p>swings, crazy demand, and nonsense arguments, you're still here </p>
+      <p> SO YES, YOU OVER ANYONE! </p>
+      </p> 
+    </section>
+
+    <section id="reasons">
+      <h1>💖 Reasons I Love You 💖</h1>
+      <div class="card-container">
+        <div class="flashcard" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">Tap to Reveal</div>
+            <div class="card-back">Kasi ikaw si Orlando</div>
+          </div>
+        </div>
+        <div class="flashcard" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">Tap to Reveal</div>
+            <div class="card-back">Kasi love kita mga bente?</div>
+          </div>
+        </div>
+        <div class="flashcard" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">Tap to Reveal</div>
+            <div class="card-back">Kasi naaaway kita palagi</div>
+          </div>
+        </div>
+        <div class="flashcard" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">Tap to Reveal</div>
+            <div class="card-back">I love because you love me even I'm big naaaa</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="game">
+      <h1>❤️ Catch the Hearts ❤️</h1>
+      <p id="score">Hearts Caught: 0</p>
+      <div id="gameArea" style="position:relative;height:60vh;border:2px dashed #ff8a65;margin:20px;background:#ffecb3;overflow:hidden;">
+        <div id="basket"></div>
+      </div>
+      <div id="flashcard" style="display:none;background:#fff8e1;padding:20px;margin-top:20px;border:2px dashed #ffb74d;border-radius:15px;font-size:20px;">Okay, may hug ka latur 🤗</div>
+      <button onclick="startGame()">Play Again</button>
+    </section>
+
+    <section id="gallery">
+      <h1>📸 Our Sweet Memories 📸</h1>
+      <div class="gallery">
+       <img src="images/first.jpg" alt="Before Sports Fest">
+  <img src="images/second.jpg" alt="After The AOT: The Last Attack">
+  <img src="images/third.jpg" alt="Takas sa club">
+  <img src="images/xoxo.jpg" alt="TechnoBytes">
+  <img src="images/heart.jpg" alt="TechnoBytes">
+  <img src="images/club.jpg" alt="TechnoBytes">
+  <img src="images/Life4Cuts.jpg" alt="SM Sucat">
+  <img src="images/elevator.jpg" alt="SM Dasma">
+  <img src="images/subway.jpg" alt="SM Dasma">
+      </div>
+    </section>
+
+    <section id="playlist">
+      <h1>🎶 Our Playlist 🎶</h1>
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1imKjqM7PNPfezBK6FTyAO?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </section>
+  </div>
+
+  <script>
+    document.getElementById("loginPage").style.display = "block";
+
+    document.onkeydown = function(e) {
+      if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85)) {
+        return false;
+      }
+    };
+
+    function login() {
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+      if(user === 'Orlandow' && pass === 'GandaNgGFKoMen') {
+        document.getElementById('loginPage').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        showSection('home');
+      } else {
+        document.getElementById('error').innerText = 'WHO YOU IMPOSTOR?!';
+      }
+    }
+
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function flipCard(card) {
+      const inner = card.querySelector('.card-inner');
+      inner.classList.toggle('flipped');
+    }
+
+    let caught = 0;
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 90 + '%';
+      heart.style.animation = 'fall 3s linear forwards';
+      heart.onclick = function() {
+        caught++;
+        document.getElementById('score').innerText = 'Hearts Caught: ' + caught;
+        heart.remove();
+        if (caught === 10) {
+          document.getElementById('flashcard').style.display = 'block';
+        }
+      };
+      document.getElementById('gameArea').appendChild(heart);
+      setTimeout(() => heart.remove(), 3000);
+    }
+
+    function startGame() {
+      caught = 0;
+      document.getElementById('score').innerText = 'Hearts Caught: 0';
+      document.getElementById('flashcard').style.display = 'none';
+      let interval = setInterval(() => {
+        if (caught >= 10) {
+          clearInterval(interval);
+        } else {
+          createHeart();
+        }
+      }, 500);
+    }
+  </script>
+</body>
+</html>
