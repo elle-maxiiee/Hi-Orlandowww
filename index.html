@@ -103,19 +103,36 @@
       <div class="heart-container" id="floatingHearts"></div>
       <div class="message-box">
         <p>You’re the reason why this world is not so bad after all.</p>
+        <p>You love me even when I am big na</p>
+        <p>Sumakses ka kahit step by the step</p>
+        <p>Monthsarry ngani ngayonnnnn</p>
       </div>
     </section>
 
     <!-- Quiz -->
     <section id="quiz">
-      <h1>❓ How Well Do You Know Me? ❓</h1>
+      <h1> Random Questions na P'wedeng Pag-awayan </h1>
       <div class="quiz-box">
         <p>What is my favorite drink?</p>
         <button onclick="checkAnswer(this, true)">Milk Tea</button>
         <button onclick="checkAnswer(this, false)">Coffee</button>
         <button onclick="checkAnswer(this, false)">Softdrinks</button>
       </div>
-      <div id="quizFeedback"></div>
+      <div id="Milk Tea"></div>
+      <div class="quiz-box">
+        <p>Who are you?</p>
+        <button onclick="checkAnswer(this, true)">Orlando Lopez</button>
+        <button onclick="checkAnswer(this, false)">Orly</button>
+        <button onclick="checkAnswer(this, false)">Lovie</button>
+      </div>
+      <div id="Lovie"></div>
+      <div class="quiz-box">
+        <p>Anong oras ako natutulog</p>
+        <button onclick="checkAnswer(this, true)">11:00 PM</button>
+        <button onclick="checkAnswer(this, false)">1:00 AM</button>
+        <button onclick="checkAnswer(this, false)">12:30 AM</button>
+      </div>
+      <div id="12:30 AM"></div>
     </section>
 
     <!-- Playlist -->
@@ -203,7 +220,7 @@
 
     // Heart Messages
     setInterval(() => {
-      const heart = document.createElement('div');
+   const heart = document.createElement('div');
       heart.className = 'floating-heart';
       heart.style.left = Math.random() * 100 + 'vw';
       document.getElementById('floatingHearts').appendChild(heart);
@@ -212,7 +229,7 @@
 
     // Quiz
     function checkAnswer(button, isCorrect) {
-      document.getElementById('quizFeedback').innerText = isCorrect ? 'YAY! You got it right 🥰' : 'Oopsie! Try again!';
+      document.getElementById('quizFeedback').innerText = isCorrect ? 'Galing nandadaya nanaman kasi' : 'Impostor talaga yan sha';
     }
     
   </script>
