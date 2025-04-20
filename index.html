@@ -80,54 +80,54 @@
     </section>
 
     <!-- Gallery -->
-   <section id="gallery">
-  <h1>📸 Our Sweet Memories 📸</h1>
-  <div class="slideshow-container">
-    <div class="gallery-slide active"><img src="images/first.JPG" onclick="expandImage(this)" /></div>
-    <div class="gallery-slide"><img src="images/second.JPG" onclick="expandImage(this)" /></div>
-    <div class="gallery-slide"><img src="images/third.JPG" onclick="expandImage(this)" /></div>
-    <div class="gallery-slide"><img src="images/xoxo.JPEG" onclick="expandImage(this)" /></div>
-    <div class="gallery-slide"><img src="images/heart.JPEG" onclick="expandImage(this)" /></div>
-    <div class="gallery-slide"><img src="images/club.JPEG" onclick="expandImage(this)" /></div>
-    <div class="gallery-slide"><img src="images/Life4Cuts.JPG" onclick="expandImage(this)" /></div>
-    <div class="gallery-slide"><img src="images/elevator.JPG" onclick="expandImage(this)" /></div>
-    <div class="gallery-slide"><img src="images/subway.JPG" onclick="expandImage(this)" /></div>
-    <a class="prev" onclick="plusSlides(-1)">❮</a>
-    <a class="next" onclick="plusSlides(1)">❯</a>
-  </div>
+    <section id="gallery">
+      <h1>📸 Our Sweet Memories 📸</h1>
+      <div class="slideshow-container">
+        <div class="gallery-slide active"><img src="images/first.JPG" onclick="expandImage(this)" /></div>
+        <div class="gallery-slide"><img src="images/second.JPG" onclick="expandImage(this)" /></div>
+        <div class="gallery-slide"><img src="images/third.JPG" onclick="expandImage(this)" /></div>
+        <div class="gallery-slide"><img src="images/xoxo.JPEG" onclick="expandImage(this)" /></div>
+        <div class="gallery-slide"><img src="images/heart.JPEG" onclick="expandImage(this)" /></div>
+        <div class="gallery-slide"><img src="images/club.JPEG" onclick="expandImage(this)" /></div>
+        <div class="gallery-slide"><img src="images/Life4Cuts.JPG" onclick="expandImage(this)" /></div>
+        <div class="gallery-slide"><img src="images/elevator.JPG" onclick="expandImage(this)" /></div>
+        <div class="gallery-slide"><img src="images/subway.JPG" onclick="expandImage(this)" /></div>
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+      </div>
 
-  <!-- Lightbox for full image view -->
-  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img">
-  </div>
-</section>
+      <!-- Lightbox for full image view -->
+      <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img">
+      </div>
+    </section>
 
     <!-- Messages -->
-   <section id="animatedMessages">
-  <h1>💌 Animated Heart Messages 💌</h1>
-  <div class="heart-message-container" id="heartMessages">
-    <div class="heart-msg">💖 You’re the reason why this world is not so bad after all</div>
-    <div class="heart-msg">💖 You love me even when I am big na</div>
-    <div class="heart-msg">💖 Sumakses ka kahit step by the step</div>
-    <div class="heart-msg">💖 Monthsarry ngani ngayonnnnn</div>
-    <div class="heart-msg">💖 Sana nakaligo kana boss</div>
-    <div class="heart-msg">💖 Gusto ko malamig</div>
-  </div>
+    <section id="animatedMessages">
+      <h1>💌 Animated Heart Messages 💌</h1>
+      <div class="heart-message-container" id="heartMessages">
+        <div class="heart-msg">💖 You’re the reason why this world is not so bad after all</div>
+        <div class="heart-msg">💖 You love me even when I am big na</div>
+        <div class="heart-msg">💖 Sumakses ka kahit step by the step</div>
+        <div class="heart-msg">💖 Monthsarry ngani ngayonnnnn</div>
+        <div class="heart-msg">💖 Sana nakaligo kana boss</div>
+        <div class="heart-msg">💖 Gusto ko malamig</div>
+      </div>
 
-  <div class="heart-input-container">
-    <input type="text" id="customHeartMessage" placeholder="Type your message here, Landooo 💕" />
-    <button onclick="addHeartMessage()">Add Message</button>
-  </div>
-</section>
+      <div class="heart-input-container">
+        <input type="text" id="customHeartMessage" placeholder="Type your message here, Landooo 💕" />
+        <button onclick="addHeartMessage()">Add Message</button>
+      </div>
+    </section>
 
     <!-- Quiz -->
-   <section id="quiz">
-  <h1>🎉 Random Questions na P'wedeng Pag-awayan 🎉</h1>
-  <div id="quiz-container" class="quiz-box"></div>
-  <p id="quiz-feedback"></p>
-  <p id="quiz-score">Score: 0</p>
-  <button id="next-question" style="display: none;" onclick="loadNextQuestion()">Next Question</button>
-</section>
+    <section id="quiz">
+      <h1>🎉 Random Questions na P'wedeng Pag-awayan 🎉</h1>
+      <div id="quiz-container" class="quiz-box"></div>
+      <p id="quiz-feedback"></p>
+      <p id="quiz-score">Score: 0</p>
+      <button id="next-question" style="display: none;" onclick="loadNextQuestion()">Next Question</button>
+    </section>
 
     <!-- Playlist -->
     <section id="playlist">
@@ -135,25 +135,22 @@
       <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1imKjqM7PNPfezBK6FTyAO?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </section>
   </div>
- 
+
   <script>
-  <!-- All your sections, etc -->
+    function login() {
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      const errorElement = document.getElementById('error');
 
-<script>
-  function login() {
-    const user = document.getElementById('username').value.trim();
-    const pass = document.getElementById('password').value.trim();
-    const errorElement = document.getElementById('error');
-
-    if (user === 'Orlandow' && pass === 'GandaNgGFKoMen') {
-      document.getElementById('loginPage').style.display = 'none';
-      document.getElementById('mainContent').style.display = 'block';
-      errorElement.innerText = '';
-      showSection('home'); // Make sure this function exists too
-    } else {
-      errorElement.innerText = 'WHO YOU IMPOSTOR?!';
+      if (user === 'Orlandow' && pass === 'GandaNgGFKoMen') {
+        document.getElementById('loginPage').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        errorElement.innerText = '';
+        showSection('home');
+      } else {
+        errorElement.innerText = 'WHO YOU IMPOSTOR?!';
+      }
     }
-  }
 
     function showSection(id) {
       document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
@@ -165,7 +162,7 @@
     }
 
     // Game
-       let caught = 0;
+    let caught = 0;
     function createHeart() {
       const heart = document.createElement('div');
       heart.className = 'heart';
@@ -180,10 +177,8 @@
         }
       };
       document.getElementById('gameArea').appendChild(heart);
-      setTimeout(() => heart.remove(), 3000);
-    }
-
-    function startGame() {
+      setTimeout(() => heart.remove
+      function startGame() {
       caught = 0;
       document.getElementById('score').innerText = 'Hearts Caught: 0';
       document.getElementById('flashcard').style.display = 'none';
@@ -198,7 +193,7 @@
     document.addEventListener('mousemove', (e) => {
       const basket = document.getElementById('basket');
       if (basket) {
-        basket.style.left = `${e.clientX}px`;
+        basket.style.left = ${e.clientX}px;
       }
     });
 
@@ -328,7 +323,7 @@ function shuffleQuestions() {
 
 function loadNextQuestion() {
   if (currentQuestionIndex >= shuffledQuestions.length) {
-    document.getElementById('quiz-container').innerHTML = `<h2>Quiz finished! 🎉</h2><p>Final Score: ${score}/${shuffledQuestions.length}</p>`;
+    document.getElementById('quiz-container').innerHTML = <h2>Quiz finished! 🎉</h2><p>Final Score: ${score}/${shuffledQuestions.length}</p>;
     document.getElementById('next-question').style.display = "none";
     document.getElementById('quiz-feedback').style.display = "none";
     return;
@@ -339,10 +334,10 @@ function loadNextQuestion() {
   const feedback = document.getElementById('quiz-feedback');
 
   let buttons = quiz.options.map((opt, idx) => {
-    return `<button onclick="checkAnswer(${opt.correct}, '${opt.message}', this)">${opt.text}</button>`;
+    return <button onclick="checkAnswer(${opt.correct}, '${opt.message}', this)">${opt.text}</button>;
   }).join('');
 
-  container.innerHTML = `<p>${quiz.question}</p>${buttons}`;
+  container.innerHTML = <p>${quiz.question}</p>${buttons};
   feedback.innerHTML = '';
   document.getElementById('next-question').style.display = "none";
 }
@@ -355,7 +350,7 @@ function checkAnswer(isCorrect, message, btn) {
   allButtons.forEach(b => b.disabled = true);
   btn.style.backgroundColor = isCorrect ? '#8bc34a' : '#f44336';
 
-  document.getElementById('quiz-score').innerText = `Score: ${score}`;
+  document.getElementById('quiz-score').innerText = Score: ${score};
   document.getElementById('next-question').style.display = "inline-block";
   currentQuestionIndex++;
 }
