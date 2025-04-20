@@ -131,227 +131,192 @@
     </section>
   </div>
 
-   <script>
-    function login() {
-      const user = document.getElementById('username').value.trim();
-      const pass = document.getElementById('password').value.trim();
-      const error = document.getElementById('error');
+<script>
+  // ✅ LOGIN FUNCTION
+  function login() {
+    const user = document.getElementById('username').value.trim();
+    const pass = document.getElementById('password').value.trim();
+    const error = document.getElementById('error');
 
-      if (user === 'Orlandow' && pass === 'GandaNgGFKoMen') {
-        document.getElementById('loginPage').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
-        error.textContent = '';
+    if (user === 'Orlandow' && pass === 'GandaNgGFKoMen') {
+      document.getElementById('loginPage').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+      error.textContent = '';
+      showSection('home'); // ✅ default to show Home section
+    } else {
+      error.textContent = 'WHO YOU IMPOSTOR?! 😡';
+    }
+  }
+
+  // ✅ SHOW SECTION FUNCTION
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  // ✅ CARD FLIP
+  function flipCard(card) {
+    card.querySelector('.card-inner').classList.toggle('flipped');
+  }
+
+  // ✅ GAME FUNCTIONS
+  let caught = 0;
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * 90 + '%';
+    heart.onclick = function () {
+      caught++;
+      document.getElementById('score').innerText = 'Hearts Caught: ' + caught;
+      heart.remove();
+      if (caught === 10) document.getElementById('flashcard').style.display = 'block';
+    };
+    document.getElementById('gameArea').appendChild(heart);
+    setTimeout(() => heart.remove(), 4000);
+  }
+
+  function startGame() {
+    caught = 0;
+    document.getElementById('score').innerText = 'Hearts Caught: 0';
+    document.getElementById('flashcard').style.display = 'none';
+    let interval = setInterval(() => {
+      if (caught >= 10) {
+        clearInterval(interval);
       } else {
-        error.textContent = 'WHO YOU IMPOSTOR?! 😡';
+        createHeart();
       }
-    }
+    }, 500);
+  }
 
-    function showSection(id) {
-      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+  document.addEventListener('mousemove', (e) => {
+    const basket = document.getElementById('basket');
+    if (basket) {
+      basket.style.left = `${e.clientX}px`;
     }
+  });
 
-    function flipCard(card) {
-      card.querySelector('.card-inner').classList.toggle('flipped');
-    }
+  // ✅ GALLERY SLIDESHOW
+  let gallerySlideIndex = 0;
+  const gallerySlides = document.querySelectorAll('.gallery-slide');
 
-    // Game
-    let caught = 0;
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = Math.random() * 90 + '%';
-      heart.onclick = function() {
-        caught++;
-        document.getElementById('score').innerText = 'Hearts Caught: ' + caught;
-        heart.remove();
-        if (caught === 10) document.getElementById('flashcard').style.display = 'block';
-      };
-      document.getElementById('gameArea').appendChild(heart);
-      setTimeout(() => heart.remove(), 4000);
-    }
-
-    function startGame() {
-      caught = 0;
-      document.getElementById('score').innerText = 'Hearts Caught: 0';
-      document.getElementById('flashcard').style.display = 'none';
-      let interval = setInterval(() => {
-        if (caught >= 10) {
-          clearInterval(interval);
-        } else {
-          createHeart();
-        }
-      }, 500);
-    }
-
-    document.addEventListener('mousemove', (e) => {
-      const basket = document.getElementById('basket');
-      if (basket) {
-        basket.style.left = `${e.clientX}px`;
-      }
+  function showGallerySlides(index) {
+    gallerySlides.forEach((slide, i) => {
+      slide.classList.remove('active');
+      if (i === index) slide.classList.add('active');
     });
-
-    // Slideshow
-    let gallerySlideIndex = 0;
-const gallerySlides = document.querySelectorAll('.gallery-slide');
-
-function showGallerySlides(index) {
-  gallerySlides.forEach((slide, i) => {
-    slide.classList.remove('active');
-    if (i === index) slide.classList.add('active');
-  });
-}
-
-function plusSlides(n) {
-  gallerySlideIndex += n;
-  if (gallerySlideIndex >= gallerySlides.length) gallerySlideIndex = 0;
-  if (gallerySlideIndex < 0) gallerySlideIndex = gallerySlides.length - 1;
-  showGallerySlides(gallerySlideIndex);
-}
-
-// Initialize first slide
-showGallerySlides(gallerySlideIndex);
-
-// Lightbox
-function expandImage(imgElement) {
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  lightboxImg.src = imgElement.src;
-  lightbox.style.display = 'flex';
-}
-function closeLightbox() {
-  document.getElementById('lightbox').style.display = 'none';
-}
-
-    // Heart Messages
-   setInterval(() => {
-   const messages = [
-  "You’re the reason why this world is not so bad after all",
-  "You love me even when I am big na",
-  "Sumakses ka kahit step by the step",
-  "Monthsarry ngani ngayonnnnn",
-  "Sana nakaligo kana boss",
-  "Gusto ko malamig"
-];
-
-function createHeart(message) {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.textContent = message;
-
-  // Randomize position and size
-  heart.style.left = Math.random() * 90 + "%";
-  heart.style.fontSize = Math.random() * 8 + 14 + "px";
-
-  document.getElementById("heartContainer").appendChild(heart);
-
-  // Remove after animation
-  setTimeout(() => heart.remove(), 8000);
-}
-
-function launchInitialHearts() {
-  messages.forEach((msg, index) => {
-    setTimeout(() => createHeart(msg), index * 1000);
-  });
-
-  setInterval(() => {
-    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-    createHeart(randomMessage);
-  }, 4000);
-}
-
-function addHeartMessage() {
-  const input = document.getElementById("customHeartMsg");
-  const msg = input.value.trim();
-  if (msg) {
-    createHeart(msg);
-    input.value = "";
   }
-}
 
-window.addEventListener("DOMContentLoaded", launchInitialHearts);
-
-    // Quiz
-    const questions = [
-  {
-    question: "What is my favorite drink?",
-    options: [
-      { text: "Milk Tea", correct: true, message: "Tamaaa! Milk tea is lifeee 🍵💕" },
-      { text: "Coffee", correct: false, message: "Hindi ako coffee girl, lovie!" },
-      { text: "Softdrinks", correct: false, message: "Wronggg! Hindi ako sugar girl 😆" }
-    ]
-  },
-  {
-    question: "Who are you?",
-    options: [
-      { text: "Orlando Lopez", correct: false, message: "Technically tama, pero mali 😂" },
-      { text: "Orly", correct: false, message: "Nickname lang 'yan, wag kang sneaky 😜" },
-      { text: "Lovie", correct: true, message: "Yesss, my one and only Lovie 💗" }
-    ]
-  },
-  {
-    question: "Anong oras ako natutulog?",
-    options: [
-      { text: "11:00 PM", correct: false, message: "Too earlyyy for us 😴" },
-      { text: "1:00 AM", correct: false, message: "Sobrang late, hindi naman araw araw! 😅" },
-      { text: "12:30 AM", correct: true, message: "Yes! Sakto sa bedtime routine natin 🛌" }
-    ]
-  },
-  {
-    question: "Sino ang pinakagwapo sa buong mundo?",
-    options: [
-      { text: "Si Orlando 😎", correct: true, message: "Walang duda!!! 💘" },
-      { text: "Si crush", correct: false, message: "Hoy! Anong crush crush d'yan? 😡" },
-      { text: "Si BTS", correct: false, message: "Ay sorry, si Orlando pa rin 😂" }
-    ]
+  function plusSlides(n) {
+    gallerySlideIndex += n;
+    if (gallerySlideIndex >= gallerySlides.length) gallerySlideIndex = 0;
+    if (gallerySlideIndex < 0) gallerySlideIndex = gallerySlides.length - 1;
+    showGallerySlides(gallerySlideIndex);
   }
-];
 
-let currentQuestionIndex = 0;
-let score = 0;
-let shuffledQuestions = [];
+  showGallerySlides(gallerySlideIndex); // initialize
 
-function shuffleQuestions() {
-  shuffledQuestions = [...questions].sort(() => Math.random() - 0.5);
-}
+  // ✅ HEART MESSAGES
+  const heartMessages = [
+    "You’re the reason why this world is not so bad after all",
+    "You love me even when I am big na",
+    "Sumakses ka kahit step by the step",
+    "Monthsarry ngani ngayonnnnn",
+    "Sana nakaligo kana boss",
+    "Gusto ko malamig"
+  ];
 
-function loadNextQuestion() {
-  if (currentQuestionIndex >= shuffledQuestions.length) {
-    document.getElementById('quiz-container').innerHTML = <h2>Quiz finished! 🎉</h2><p>Final Score: ${score}/${shuffledQuestions.length}</p>;
+  function addHeartMessage() {
+    const input = document.getElementById("customHeartMessage");
+    const msg = input.value.trim();
+    if (msg) {
+      const heart = document.createElement("div");
+      heart.className = "heart-msg";
+      heart.textContent = "💖 " + msg;
+      document.getElementById("heartMessages").appendChild(heart);
+      input.value = "";
+    }
+  }
+
+  // ✅ QUIZ SECTION
+  const questions = [
+    {
+      question: "What is my favorite drink?",
+      options: [
+        { text: "Milk Tea", correct: true, message: "Tamaaa! Milk tea is lifeee 🍵💕" },
+        { text: "Coffee", correct: false, message: "Hindi ako coffee girl, lovie!" },
+        { text: "Softdrinks", correct: false, message: "Wronggg! Hindi ako sugar girl 😆" }
+      ]
+    },
+    {
+      question: "Who are you?",
+      options: [
+        { text: "Orlando Lopez", correct: false, message: "Technically tama, pero mali 😂" },
+        { text: "Orly", correct: false, message: "Nickname lang 'yan, wag kang sneaky 😜" },
+        { text: "Lovie", correct: true, message: "Yesss, my one and only Lovie 💗" }
+      ]
+    },
+    {
+      question: "Anong oras ako natutulog?",
+      options: [
+        { text: "11:00 PM", correct: false, message: "Too earlyyy for us 😴" },
+        { text: "1:00 AM", correct: false, message: "Sobrang late, hindi naman araw araw! 😅" },
+        { text: "12:30 AM", correct: true, message: "Yes! Sakto sa bedtime routine natin 🛌" }
+      ]
+    },
+    {
+      question: "Sino ang pinakagwapo sa buong mundo?",
+      options: [
+        { text: "Si Orlando 😎", correct: true, message: "Walang duda!!! 💘" },
+        { text: "Si crush", correct: false, message: "Hoy! Anong crush crush d'yan? 😡" },
+        { text: "Si BTS", correct: false, message: "Ay sorry, si Orlando pa rin 😂" }
+      ]
+    }
+  ];
+
+  let currentQuestionIndex = 0;
+  let score = 0;
+  let shuffledQuestions = [];
+
+  function shuffleQuestions() {
+    shuffledQuestions = [...questions].sort(() => Math.random() - 0.5);
+  }
+
+  function loadNextQuestion() {
+    const container = document.getElementById('quiz-container');
+    const feedback = document.getElementById('quiz-feedback');
+    if (currentQuestionIndex >= shuffledQuestions.length) {
+      container.innerHTML = `<h2>Quiz finished! 🎉</h2><p>Final Score: ${score}/${shuffledQuestions.length}</p>`;
+      document.getElementById('next-question').style.display = "none";
+      feedback.style.display = "none";
+      return;
+    }
+
+    const quiz = shuffledQuestions[currentQuestionIndex];
+    let buttons = quiz.options.map((opt, idx) => {
+      return `<button onclick="checkAnswer(${opt.correct}, '${opt.message.replace(/'/g, "\\'")}', this)">${opt.text}</button>`;
+    }).join('');
+
+    container.innerHTML = `<p>${quiz.question}</p>${buttons}`;
+    feedback.innerHTML = '';
     document.getElementById('next-question').style.display = "none";
-    document.getElementById('quiz-feedback').style.display = "none";
-    return;
   }
 
-  const quiz = shuffledQuestions[currentQuestionIndex];
-  const container = document.getElementById('quiz-container');
-  const feedback = document.getElementById('quiz-feedback');
+  function checkAnswer(isCorrect, message, btn) {
+    document.getElementById('quiz-feedback').innerText = message;
+    if (isCorrect) score++;
 
-  let buttons = quiz.options.map((opt, idx) => {
-    return <button onclick="checkAnswer(${opt.correct}, '${opt.message}', this)">${opt.text}</button>;
-  }).join('');
+    const allButtons = document.querySelectorAll('#quiz-container button');
+    allButtons.forEach(b => b.disabled = true);
+    btn.style.backgroundColor = isCorrect ? '#8bc34a' : '#f44336';
 
-  container.innerHTML = <p>${quiz.question}</p>${buttons};
-  feedback.innerHTML = '';
-  document.getElementById('next-question').style.display = "none";
-}
+    document.getElementById('quiz-score').innerText = `Score: ${score}`;
+    document.getElementById('next-question').style.display = "inline-block";
+    currentQuestionIndex++;
+  }
 
-function checkAnswer(isCorrect, message, btn) {
-  document.getElementById('quiz-feedback').innerText = message;
-  if (isCorrect) score++;
-
-  const allButtons = document.querySelectorAll('#quiz-container button');
-  allButtons.forEach(b => b.disabled = true);
-  btn.style.backgroundColor = isCorrect ? '#8bc34a' : '#f44336';
-
-  document.getElementById('quiz-score').innerText = Score: ${score};
-  document.getElementById('next-question').style.display = "inline-block";
-  currentQuestionIndex++;
-}
-
-// Initialize quiz
-shuffleQuestions();
-loadNextQuestion();  
-  </script>
-</body>
-</html>
+  // ✅ INIT QUIZ ON PAGE LOAD
+  window.addEventListener('DOMContentLoaded', () => {
+    shuffleQuestions();
+    loadNextQuestion();
+  });
+</script>
