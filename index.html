@@ -69,32 +69,41 @@
     </section>
 
     <!-- Heart Catcher Game -->
-    <section id="game">
-      <h1>❤️ Catch the Hearts ❤️</h1>
-      <p id="score">Hearts Caught: 0</p>
-      <div id="gameArea">
-        <div id="basket"></div>
-      </div>
-      <div id="flashcard">Okay, may hug ka latur 🤗</div>
-      <button onclick="startGame()">Play Again</button>
-    </section>
+   <!-- Heart Catcher Game -->
+<section id="game">
+  <h1>❤️ Catch the Hearts ❤️</h1>
+  <p id="score">Hearts Caught: 0</p>
+  <div id="gameArea">
+    <div id="basket"></div>
+  </div>
+  <div id="flashcard" style="display:none;">Good job! May hug ka later 🤗</div>
+  <button onclick="startGame()">Play Again</button>
+</section>
 
 <section id="gallery">
   <h1>📸 Our Sweet Memories 📸</h1>
   <div class="slideshow-container">
     <button class="prev" onclick="changeSlide(-1)">❮</button>
-    <img class="gallery-slide" src="images/first.JPG" alt="1">
-    <img class="gallery-slide" src="images/second.JPG" alt="2">
-    <img class="gallery-slide" src="images/third.JPG" alt="3">
-    <img class="gallery-slide" src="images/xoxo.JPEG" alt="4">
-    <img class="gallery-slide" src="images/heart.JPEG" alt="5">
-    <img class="gallery-slide" src="images/club.JPEG" alt="6">
-    <img class="gallery-slide" src="images/Life4Cuts.JPG" alt="7">
-    <img class="gallery-slide" src="images/elevator.JPG" alt="8">
-    <img class="gallery-slide" src="images/subway.JPG" alt="9">
+    <div class="gallery-slide-container">
+      <img class="gallery-slide" src="images/first.JPG" alt="1" onclick="expandImage(this)">
+      <img class="gallery-slide" src="images/second.JPG" alt="2" onclick="expandImage(this)">
+      <img class="gallery-slide" src="images/third.JPG" alt="3" onclick="expandImage(this)">
+      <img class="gallery-slide" src="images/xoxo.JPEG" alt="4" onclick="expandImage(this)">
+      <img class="gallery-slide" src="images/heart.JPEG" alt="5" onclick="expandImage(this)">
+      <img class="gallery-slide" src="images/club.JPEG" alt="6" onclick="expandImage(this)">
+      <img class="gallery-slide" src="images/Life4Cuts.JPG" alt="7" onclick="expandImage(this)">
+      <img class="gallery-slide" src="images/elevator.JPG" alt="8" onclick="expandImage(this)">
+      <img class="gallery-slide" src="images/subway.JPG" alt="9" onclick="expandImage(this)">
+    </div>
     <button class="next" onclick="changeSlide(1)">❯</button>
   </div>
+
+  <!-- Lightbox for expanded image view -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" class="lightbox-img">
+  </div>
 </section>
+
     
     <!-- Quiz -->
       <section id="quiz">
@@ -298,42 +307,67 @@ loadNextQuestion();
 
   // ✅ GAME FUNCTIONS
   let caught = 0;
-  function createHeart() {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.style.left = Math.random() * 90 + '%';
-    heart.onclick = function () {
-      caught++;
-      document.getElementById('score').innerText = 'Hearts Caught: ' + caught;
-      heart.remove();
-      if (caught === 10) document.getElementById('flashcard').style.display = 'block';
-    };
-    document.getElementById('gameArea').appendChild(heart);
-    setTimeout(() => heart.remove(), 4000);
-  }
+let gameInterval;
+let isGameRunning = false;
 
-  function startGame() {
-    caught = 0;
-    document.getElementById('score').innerText = 'Hearts Caught: 0';
-    document.getElementById('flashcard').style.display = 'none';
-    let interval = setInterval(() => {
-      if (caught >= 10) {
-        clearInterval(interval);
-      } else {
-        createHeart();
-      }
-    }, 500);
-  }
+function createHeart() {
+  if (!isGameRunning) return;
+  
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.style.left = Math.random() * 90 + '%'; // Random horizontal position
 
-  document.addEventListener('mousemove', (e) => {
-    const basket = document.getElementById('basket');
-    if (basket) {
-      basket.style.left = `${e.clientX}px`;
+  // Check if heart is caught
+  heart.addEventListener('click', () => {
+    caught++;
+    document.getElementById('score').innerText = `Hearts Caught: ${caught}`;
+    heart.remove();
+
+    if (caught === 10) {
+      showFlashcard();
     }
   });
 
+  document.getElementById('gameArea').appendChild(heart);
+  setTimeout(() => heart.remove(), 3000); // Remove heart after 3 seconds
+}
+
+function startGame() {
+  caught = 0;
+  document.getElementById('score').innerText = 'Hearts Caught: 0';
+  document.getElementById('flashcard').style.display = 'none';
+  isGameRunning = true;
+
+  // Start creating falling hearts at regular intervals
+  gameInterval = setInterval(createHeart, 1000);
+}
+
+function showFlashcard() {
+  clearInterval(gameInterval); // Stop the game
+  document.getElementById('flashcard').style.display = 'block'; // Show flashcard
+  setTimeout(() => {
+    document.getElementById('flashcard').style.display = 'none';
+    startGame(); // Restart the game
+  }, 3000); // Show flashcard for 3 seconds
+}
+
+// Moving Basket
+document.addEventListener('mousemove', (e) => {
+  const basket = document.getElementById('basket');
+  const gameArea = document.getElementById('gameArea');
+  const basketWidth = basket.offsetWidth;
+
+  let positionX = e.clientX - gameArea.offsetLeft - (basketWidth / 2);
+  
+  // Prevent basket from going outside the game area
+  positionX = Math.max(0, Math.min(positionX, gameArea.offsetWidth - basketWidth));
+  
+  basket.style.left = `${positionX}px`;
+});
+
   // ✅ GALLERY SLIDESHOW
-  let currentSlide = 0;
+ // Slideshow Navigation
+let currentSlide = 0;
 const slides = document.querySelectorAll(".gallery-slide");
 
 function showSlide(index) {
@@ -351,7 +385,19 @@ function changeSlide(direction) {
 
 // Initialize slideshow
 showSlide(currentSlide);
-  
+
+// Lightbox functionality
+function expandImage(imgElement) {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  lightboxImg.src = imgElement.src;
+  lightbox.style.display = 'flex';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+}
+
   // ✅ QUIZ SECTION
   const questions = [
     {
