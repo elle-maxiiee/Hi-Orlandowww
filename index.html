@@ -80,22 +80,27 @@
     </section>
 
     <!-- Gallery -->
-    <section id="gallery">
-      <h1>📸 Our Sweet Memories 📸</h1>
-      <div class="slideshow-container">
-        <div class="gallery-slide active"><img src="images/first.JPG" /></div>
-        <div class="gallery-slide"><img src="images/second.JPG" /></div>
-        <div class="gallery-slide"><img src="images/third.JPG" /></div>
-        <div class="gallery-slide"><img src="images/xoxo.JPEG" /></div>
-        <div class="gallery-slide"><img src="images/heart.JPEG" /></div>
-        <div class="gallery-slide"><img src="images/club.JPEG" /></div>
-        <div class="gallery-slide"><img src="images/Life4Cuts.JPG" /></div>
-        <div class="gallery-slide"><img src="images/elevator.JPG" /></div>
-        <div class="gallery-slide"><img src="images/subway.JPG" /></div>
-        <a class="prev" onclick="plusSlides(-1)">❮</a>
-        <a class="next" onclick="plusSlides(1)">❯</a>
-      </div>
-    </section>
+   <section id="gallery">
+  <h1>📸 Our Sweet Memories 📸</h1>
+  <div class="slideshow-container">
+    <div class="gallery-slide active"><img src="images/first.JPG" onclick="expandImage(this)" /></div>
+    <div class="gallery-slide"><img src="images/second.JPG" onclick="expandImage(this)" /></div>
+    <div class="gallery-slide"><img src="images/third.JPG" onclick="expandImage(this)" /></div>
+    <div class="gallery-slide"><img src="images/xoxo.JPEG" onclick="expandImage(this)" /></div>
+    <div class="gallery-slide"><img src="images/heart.JPEG" onclick="expandImage(this)" /></div>
+    <div class="gallery-slide"><img src="images/club.JPEG" onclick="expandImage(this)" /></div>
+    <div class="gallery-slide"><img src="images/Life4Cuts.JPG" onclick="expandImage(this)" /></div>
+    <div class="gallery-slide"><img src="images/elevator.JPG" onclick="expandImage(this)" /></div>
+    <div class="gallery-slide"><img src="images/subway.JPG" onclick="expandImage(this)" /></div>
+    <a class="prev" onclick="plusSlides(-1)">❮</a>
+    <a class="next" onclick="plusSlides(1)">❯</a>
+  </div>
+
+  <!-- Lightbox for full image view -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img">
+  </div>
+</section>
 
     <!-- Messages -->
     <section id="messages">
@@ -203,20 +208,36 @@
     });
 
     // Slideshow
-    let slideIndex = 0;
-    function plusSlides(n) {
-      showSlides(slideIndex += n);
-    }
+    let gallerySlideIndex = 0;
+const gallerySlides = document.querySelectorAll('.gallery-slide');
 
-    function showSlides(n) {
-      const slides = document.querySelectorAll('.gallery-slide');
-      if (n >= slides.length) slideIndex = 0;
-      if (n < 0) slideIndex = slides.length - 1;
-      slides.forEach(slide => slide.classList.remove('active'));
-      slides[slideIndex].classList.add('active');
-    }
+function showGallerySlides(index) {
+  gallerySlides.forEach((slide, i) => {
+    slide.classList.remove('active');
+    if (i === index) slide.classList.add('active');
+  });
+}
 
-    showSlides(slideIndex);
+function plusSlides(n) {
+  gallerySlideIndex += n;
+  if (gallerySlideIndex >= gallerySlides.length) gallerySlideIndex = 0;
+  if (gallerySlideIndex < 0) gallerySlideIndex = gallerySlides.length - 1;
+  showGallerySlides(gallerySlideIndex);
+}
+
+// Initialize first slide
+showGallerySlides(gallerySlideIndex);
+
+// Lightbox
+function expandImage(imgElement) {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  lightboxImg.src = imgElement.src;
+  lightbox.style.display = 'flex';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+}
 
     // Heart Messages
     setInterval(() => {
