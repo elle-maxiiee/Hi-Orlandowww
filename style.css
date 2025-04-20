@@ -281,81 +281,64 @@ section.active {
 }
 
 /* Heart Messages */
-#animatedMessages {
+#messages {
   text-align: center;
-  background-color: #fef9f9;
-  padding: 40px 20px;
+  padding: 20px;
 }
 
-.heart-message-container {
+#pinBoard {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
   margin-top: 20px;
+  min-height: 200px;
+  background: url('images/pinboard.jpg') no-repeat center center;
+  background-size: cover;
+  padding: 20px;
+  border-radius: 10px;
 }
 
-.heart-msg {
-  background-color: #ffccd5;
-  color: #fff;
-  padding: 15px 20px;
-  border-radius: 30px;
-  font-size: 16px;
-  font-weight: bold;
-  box-shadow: 0 0 15px #ff87ab;
-  animation: pulse 2s infinite;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  white-space: nowrap;
+.sticky-note {
+  background-color: #fff475;
+  padding: 15px;
+  width: 150px;
+  height: 150px;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+  transform: rotate(-2deg);
+  font-family: 'Comic Sans MS', cursive;
+  font-size: 14px;
+  word-wrap: break-word;
+  border: 1px solid #e1c900;
+  position: relative;
+  transition: transform 0.3s;
 }
 
-.heart-msg:hover {
-  transform: scale(1.1) rotate(-2deg);
-  animation: bounce 1s ease;
+.sticky-note:hover {
+  transform: scale(1.05) rotate(0deg);
 }
 
-@keyframes pulse {
-  0%, 100% {
-    box-shadow: 0 0 15px #ff87ab;
-  }
-  50% {
-    box-shadow: 0 0 30px #ffa5c3;
-  }
+.message-input-container {
+  margin-top: 20px;
 }
 
-@keyframes bounce {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
-}
-
-.heart-input-container {
-  margin-top: 30px;
-}
-
-.heart-input-container input {
+.message-input-container input {
   padding: 10px;
-  border: 2px solid #ffb6c1;
-  border-radius: 20px;
   width: 60%;
-  font-size: 16px;
-  margin-right: 10px;
+  max-width: 300px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
 }
 
-.heart-input-container button {
-  padding: 10px 18px;
-  background-color: #ff87ab;
-  color: white;
+.message-input-container button {
+  padding: 10px 15px;
+  margin-left: 10px;
+  background-color: #ffc107;
   border: none;
-  border-radius: 20px;
+  border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
 }
 
-.heart-input-container button:hover {
-  background-color: #e56b91;
-}
 
 /* Quiz Section */
 .quiz-box {
