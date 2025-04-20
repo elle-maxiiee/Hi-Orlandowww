@@ -116,10 +116,11 @@
 
     <!-- Quiz -->
    <section id="quiz">
-  <h1>🎲 Random Questions na P'wedeng Pag-awayan 🎲</h1>
-  <div id="quiz-container"></div>
-  <p id="quiz-message"></p>
-  <p id="score-display">Score: 0</p>
+  <h1>🎉 Random Questions na P'wedeng Pag-awayan 🎉</h1>
+  <div id="quiz-container" class="quiz-box"></div>
+  <p id="quiz-feedback"></p>
+  <p id="quiz-score">Score: 0</p>
+  <button id="next-question" style="display: none;" onclick="loadNextQuestion()">Next Question</button>
 </section>
 
     <!-- Playlist -->
@@ -231,101 +232,86 @@ function closeLightbox() {
     }, 400);
 
     // Quiz
-    const quizData = [
+    const questions = [
   {
     question: "What is my favorite drink?",
-    options: ["Milk Tea", "Coffee", "Softdrinks"],
-    answer: "Milk Tea"
+    options: [
+      { text: "Milk Tea", correct: true, message: "Tamaaa! Milk tea is lifeee 🍵💕" },
+      { text: "Coffee", correct: false, message: "Hindi ako coffee girl, lovie!" },
+      { text: "Softdrinks", correct: false, message: "Wronggg! Hindi ako sugar girl 😆" }
+    ]
   },
   {
     question: "Who are you?",
-    options: ["Orlando Lopez", "Orly", "Lovie"],
-    answer: "Lovie"
+    options: [
+      { text: "Orlando Lopez", correct: false, message: "Technically tama, pero mali 😂" },
+      { text: "Orly", correct: false, message: "Nickname lang 'yan, wag kang sneaky 😜" },
+      { text: "Lovie", correct: true, message: "Yesss, my one and only Lovie 💗" }
+    ]
   },
   {
     question: "Anong oras ako natutulog?",
-    options: ["11:00 PM", "1:00 AM", "12:30 AM"],
-    answer: "12:30 AM"
+    options: [
+      { text: "11:00 PM", correct: false, message: "Too earlyyy for us 😴" },
+      { text: "1:00 AM", correct: false, message: "Sobrang late, hindi naman araw araw! 😅" },
+      { text: "12:30 AM", correct: true, message: "Yes! Sakto sa bedtime routine natin 🛌" }
+    ]
+  },
+  {
+    question: "Sino ang pinakagwapo sa buong mundo?",
+    options: [
+      { text: "Si Orlando 😎", correct: true, message: "Walang duda!!! 💘" },
+      { text: "Si crush", correct: false, message: "Hoy! Anong crush crush d'yan? 😡" },
+      { text: "Si BTS", correct: false, message: "Ay sorry, si Orlando pa rin 😂" }
+    ]
   }
 ];
-const quizData = [
-  {
-    question: "What is my favorite drink?",
-    options: ["Milk Tea", "Coffee", "Softdrinks"],
-    correct: "Milk Tea",
-    funMessage: "Yieeee~ Alam mo ‘to, syempre favorite ko yan!"
-  },
-  {
-    question: "Who are you?",
-    options: ["Orlando Lopez", "Orly", "Lovie"],
-    correct: "Lovie",
-    funMessage: "Tamaaa! Ikaw ang lovie ko 😚"
-  },
-  {
-    question: "Anong oras ako natutulog?",
-    options: ["11:00 PM", "1:00 AM", "12:30 AM"],
-    correct: "12:30 AM",
-    funMessage: "Oo nga! Lagi mo akong pinapaalalang matulog 😴"
-  },
-  {
-    question: "What’s our favorite bonding?",
-    options: ["Kain", "Laro", "Tulog"],
-    correct: "Laro",
-    funMessage: "SausageMan moments is life~ 🎮"
-  },
-  {
-    question: "Saan tayo unang nag-date?",
-    options: ["SM", "Jollibee", "Online"],
-    correct: "Online",
-    funMessage: "Kahit virtual date pa yan, it’s still special 💞"
-  }
-];
-let currentIndex = 0;
-let score = 0;
 
-function shuffle(array) {
-  return array.sort(() => Math.random() - 0.5);
+let currentQuestionIndex = 0;
+let score = 0;
+let shuffledQuestions = [];
+
+function shuffleQuestions() {
+  shuffledQuestions = [...questions].sort(() => Math.random() - 0.5);
 }
 
-function showQuestion() {
-  const container = document.getElementById("quiz-container");
-  const message = document.getElementById("quiz-message");
-  message.textContent = "";
-
-  if (currentIndex >= quizData.length) {
-    container.innerHTML = "<h3>🎉 Quiz Finished! Your Score: " + score + "/" + quizData.length + "</h3>";
+function loadNextQuestion() {
+  if (currentQuestionIndex >= shuffledQuestions.length) {
+    document.getElementById('quiz-container').innerHTML = `<h2>Quiz finished! 🎉</h2><p>Final Score: ${score}/${shuffledQuestions.length}</p>`;
+    document.getElementById('next-question').style.display = "none";
+    document.getElementById('quiz-feedback').style.display = "none";
     return;
   }
 
-  const q = quizData[currentIndex];
-  container.innerHTML = `
-    <div class="quiz-box">
-      <p>${q.question}</p>
-      ${shuffle(q.options).map(option => 
-        `<button onclick="checkAnswer('${option}', '${q.correct}', '${q.funMessage}')">${option}</button>`
-      ).join("")}
-    </div>
-  `;
+  const quiz = shuffledQuestions[currentQuestionIndex];
+  const container = document.getElementById('quiz-container');
+  const feedback = document.getElementById('quiz-feedback');
+
+  let buttons = quiz.options.map((opt, idx) => {
+    return `<button onclick="checkAnswer(${opt.correct}, '${opt.message}', this)">${opt.text}</button>`;
+  }).join('');
+
+  container.innerHTML = `<p>${quiz.question}</p>${buttons}`;
+  feedback.innerHTML = '';
+  document.getElementById('next-question').style.display = "none";
 }
 
-function checkAnswer(selected, correct, funMessage) {
-  const message = document.getElementById("quiz-message");
-  if (selected === correct) {
-    score++;
-    message.textContent = "✔️ Correct! " + funMessage;
-  } else {
-    message.textContent = "❌ Mali! Pero okay lang, cute ka pa rin 😘";
-  }
-  document.getElementById("score-display").textContent = `Score: ${score}`;
-  currentIndex++;
-  setTimeout(showQuestion, 1500);
+function checkAnswer(isCorrect, message, btn) {
+  document.getElementById('quiz-feedback').innerText = message;
+  if (isCorrect) score++;
+
+  const allButtons = document.querySelectorAll('#quiz-container button');
+  allButtons.forEach(b => b.disabled = true);
+  btn.style.backgroundColor = isCorrect ? '#8bc34a' : '#f44336';
+
+  document.getElementById('quiz-score').innerText = `Score: ${score}`;
+  document.getElementById('next-question').style.display = "inline-block";
+  currentQuestionIndex++;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  quizData = shuffle(quizData);
-  showQuestion();
-});
-    
+// Initialize quiz
+shuffleQuestions();
+loadNextQuestion();  
   </script>
 </body>
 </html>
