@@ -7,13 +7,13 @@
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body oncontextmenu="return false">
-  <div id="loginPage">
+ <div id="loginPage">
     <div id="loginContainer">
-      <h2>HIIIII LOVIEEE!!! 💚</h2>
+      <h2>Hiiii Lovie 💚</h2>
       <input type="text" id="username" placeholder="Username" />
       <input type="password" id="password" placeholder="Password" />
       <button onclick="login()">Login</button>
-      <p id="error" style="color:red;"></p>
+      <p id="error"></p>
     </div>
   </div>
 
@@ -131,16 +131,18 @@
     </section>
   </div>
 
-  <script>
+   <script>
     function login() {
-      const user = document.getElementById('username').value;
-      const pass = document.getElementById('password').value;
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      const error = document.getElementById('error');
+
       if (user === 'Orlandow' && pass === 'GandaNgGFKoMen') {
         document.getElementById('loginPage').style.display = 'none';
         document.getElementById('mainContent').style.display = 'block';
-        showSection('home');
+        error.textContent = '';
       } else {
-        document.getElementById('error').innerText = 'WHO YOU IMPOSTOR?!';
+        error.textContent = 'WHO YOU IMPOSTOR?! 😡';
       }
     }
 
