@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hi Orlandowww</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body oncontextmenu="return false">
-
   <div id="loginPage">
     <div id="loginContainer">
       <h2>HIIIII LOVIEEE!!! 💚</h2>
@@ -18,28 +17,24 @@
     </div>
   </div>
 
-  <div id="mainContent">
+  <div id="mainContent" style="display:none;">
     <nav>
       <a onclick="showSection('home')">🏠 Home</a>
       <a onclick="showSection('reasons')">💌 Reasons I Love You</a>
       <a onclick="showSection('game')">🎮 Heart Catcher Game</a>
       <a onclick="showSection('gallery')">📸 Photo Gallery</a>
-      <a onclick="showSection('playlist')">🎶 Our Playlist</a>
-      <a onclick="showSection('quiz')">❓ Interactive Quiz</a>
       <a onclick="showSection('heartMessages')">💖 Heart Messages</a>
+      <a onclick="showSection('quiz')">🧠 Quiz</a>
     </nav>
 
-    <!-- Home Section -->
     <section id="home" class="active">
       <h1>HELLO ORLANDO LOPEZZZZZZ 💚</h1>
-      <img src="images/homepage.png" class="home-image">
-      <p>This is for today's event, thank you for coming this far with me even with multiple of aways </p>
-      <p>If you're still asking yourself why you? Well, it's because of even after countless of mood  </p>
-      <p>swings, crazy demand, and nonsense arguments, you're still here </p>
-      <p> SO YES, YOU OVER ANYONE! </p>
+      <img src="images/homepage.png" class="home-image" alt="Home Image"/>
+      <p>This is for today's event, thank you for coming this far with me even with multiple of aways.</p>
+      <p>If you're still asking yourself why you? Well, it's because even after countless mood swings, crazy demands, and nonsense arguments, you're still here.</p>
+      <p>SO YES, YOU OVER ANYONE!</p>
     </section>
 
-    <!-- Reasons I Love You Section -->
     <section id="reasons">
       <h1>💖 Reasons I Love You 💖</h1>
       <div class="card-container">
@@ -49,195 +44,81 @@
             <div class="card-back">Kasi ikaw si Orlando</div>
           </div>
         </div>
-        <!-- Add other flashcards here -->
+        <div class="flashcard" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">Tap to Reveal</div>
+            <div class="card-back">Kasi love kita mga bente?</div>
+          </div>
+        </div>
+        <div class="flashcard" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">Tap to Reveal</div>
+            <div class="card-back">Kasi naaaway kita palagi</div>
+          </div>
+        </div>
+        <div class="flashcard" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">Tap to Reveal</div>
+            <div class="card-back">I love you because you love me even I'm big naaaa</div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Heart Catcher Game Section -->
     <section id="game">
       <h1>❤️ Catch the Hearts ❤️</h1>
       <p id="score">Hearts Caught: 0</p>
-      <div id="gameArea" style="position:relative;height:60vh;border:2px dashed #ff8a65;margin:20px;background:#ffecb3;overflow:hidden;">
+      <div id="gameArea">
         <div id="basket"></div>
       </div>
-      <div id="flashcard" style="display:none;background:#fff8e1;padding:20px;margin-top:20px;border:2px dashed #ffb74d;border-radius:15px;font-size:20px;">Okay, may hug ka latur 🤗</div>
+      <div id="flashcard" class="hidden">Okay, may hug ka latur 🤗</div>
       <button onclick="startGame()">Play Again</button>
     </section>
 
-    <!-- Photo Gallery Section -->
     <section id="gallery">
       <h1>📸 Our Sweet Memories 📸</h1>
       <div class="gallery">
         <img src="images/first.JPG" alt="Before Sports Fest">
         <img src="images/second.JPG" alt="After The AOT: The Last Attack">
-        <!-- Add other images here -->
+        <img src="images/third.JPG" alt="Takas sa club">
+        <img src="images/xoxo.JPG" alt="TechnoBytes">
+        <img src="images/heart.JPG" alt="TechnoBytes">
+        <img src="images/club.JPG" alt="TechnoBytes">
+        <img src="images/Life4Cuts.JPG" alt="SM Sucat">
+        <img src="images/elevator.JPG" alt="SM Dasma">
+        <img src="images/subway.JPG" alt="SM Dasma">
       </div>
     </section>
 
-    <!-- Playlist Section -->
-    <section id="playlist">
-      <h1>🎶 Our Playlist 🎶</h1>
-      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1imKjqM7PNPfezBK6FTyAO?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    </section>
-
-    <!-- Interactive Quiz Section -->
-    <section id="quiz">
-      <h1>💖 Interactive Quiz 💖</h1>
-      <div id="quizContainer">
-        <div class="question">
-          <p>What’s my favorite color?</p>
-          <button onclick="checkAnswer('green')">Green</button>
-          <button onclick="checkAnswer('blue')">Blue</button>
-          <button onclick="checkAnswer('pink')">Pink</button>
-        </div>
-        <div class="question">
-          <p>When did we first meet?</p>
-          <button onclick="checkAnswer('2020')">2020</button>
-          <button onclick="checkAnswer('2021')">2021</button>
-          <button onclick="checkAnswer('2019')">2019</button>
-        </div>
-        <div id="quizResult" style="display:none;">
-          <p id="resultText"></p>
-          <button onclick="resetQuiz()">Try Again</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Heart Messages Section -->
     <section id="heartMessages">
       <h1>💖 Heart Messages 💖</h1>
       <div id="heartMessagesContainer">
-        <div class="heartMessage">I love you, Orlando! 💖</div>
-        <div class="heartMessage">You make me smile every day! 😘</div>
-        <div class="heartMessage">You’re my everything! 💚</div>
+        <div class="heartMessage">I love you!</div>
+        <div class="heartMessage">You're my sunshine!</div>
+        <div class="heartMessage">Forever and always!</div>
       </div>
     </section>
 
+    <section id="quiz">
+      <h1>🧠 Interactive Quiz 🧠</h1>
+      <div id="quizContainer">
+        <div class="question">
+          <p>What is our anniversary date?</p>
+          <button onclick="checkAnswer(this, true)">January 1</button>
+          <button onclick="checkAnswer(this, false)">February 14</button>
+          <button onclick="checkAnswer(this, false)">March 3</button>
+        </div>
+        <div class="question">
+          <p>Where did we first meet?</p>
+          <button onclick="checkAnswer(this, false)">At the park</button>
+          <button onclick="checkAnswer(this, true)">At school</button>
+          <button onclick="checkAnswer(this, false)">At a concert</button>
+        </div>
+        <div id="quizResult" class="hidden">You got X out of Y correct!</div>
+      </div>
+    </section>
   </div>
 
-  <script>
-    document.getElementById("loginPage").style.display = "block";
-
-    document.onkeydown = function(e) {
-      if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85)) {
-        return false;
-      }
-    };
-
-    function login() {
-      const user = document.getElementById('username').value;
-      const pass = document.getElementById('password').value;
-      if(user === 'Orlandow' && pass === 'GandaNgGFKoMen') {
-        document.getElementById('loginPage').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
-        showSection('home');
-      } else {
-        document.getElementById('error').innerText = 'WHO YOU IMPOSTOR?!';
-      }
-    }
-
-    function showSection(id) {
-      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
-
-    function flipCard(card) {
-      const inner = card.querySelector('.card-inner');
-      inner.classList.toggle('flipped');
-    }
-
-    let caught = 0;
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = Math.random() * 90 + '%';
-      heart.style.animation = 'fall 3s linear forwards';
-      heart.onclick = function() {
-        caught++;
-        document.getElementById('score').innerText = 'Hearts Caught: ' + caught;
-        heart.remove();
-        if (caught === 10) {
-          document.getElementById('flashcard').style.display = 'block';
-        }
-      };
-      document.getElementById('gameArea').appendChild(heart);
-      setTimeout(() => heart.remove(), 3000);
-    }
-
-    function startGame() {
-      caught = 0;
-      document.getElementById('score').innerText = 'Hearts Caught: 0';
-      document.getElementById('flashcard').style.display = 'none';
-      let interval = setInterval(() => {
-        if (caught >= 10) {
-          clearInterval(interval);
-        } else {
-          createHeart();
-        }
-      }, 500);
-    }
-
-    // Interactive Quiz Logic
-    let correctAnswers = 0;
-
-    function checkAnswer(answer) {
-      if (answer === 'green') {
-        correctAnswers++;
-      }
-      // Add other questions' answers to validate here.
-
-      if (correctAnswers === 2) {
-        document.getElementById('resultText').innerText = 'You know me well! 💚';
-      } else {
-        document.getElementById('resultText').innerText = 'Let’s try again! 😊';
-      }
-      document.getElementById('quizContainer').style.display = 'none';
-      document.getElementById('quizResult').style.display = 'block';
-    }
-
-    function resetQuiz() {
-      correctAnswers = 0;
-      document.getElementById('quizContainer').style.display = 'block';
-      document.getElementById('quizResult').style.display = 'none';
-    }
-  </script>
-
-  <style>
-    #heartMessagesContainer {
-      text-align: center;
-      position: relative;
-      height: 200px;
-    }
-
-    .heartMessage {
-      position: absolute;
-      animation: floatHearts 5s ease-in-out infinite;
-      opacity: 0;
-    }
-
-    @keyframes floatHearts {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      25% { transform: translateY(-30px) scale(1.1); opacity: 0.8; }
-      50% { transform: translateY(-60px) scale(1.2); opacity: 0.6; }
-      75% { transform: translateY(-90px) scale(1.3); opacity: 0.4; }
-      100% { transform: translateY(-120px) scale(1.4); opacity: 0; }
-    }
-
-    .heart {
-      position: absolute;
-      top: 0;
-      width: 30px;
-      height: 30px;
-      background-color: red;
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-      animation: heartFall 3s linear forwards;
-    }
-
-    @keyframes heartFall {
-      0% { top: -30px; opacity: 1; }
-      100% { top: 90%; opacity: 0; }
-    }
-  </style>
-
+  <script src="script.js"></script>
 </body>
 </html>
