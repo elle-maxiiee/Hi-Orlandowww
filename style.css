@@ -81,10 +81,12 @@ section.active {
 }
 
 .home-image {
-  width: 320px;
-  height: 720px;
+  display: block;
+  max-width: 100%;
+  width: 300px;   /* You can reduce this to 200px if you want it smaller */
+  height: auto;
+  margin: 20px auto;
   border-radius: 20px;
-  margin-top: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
