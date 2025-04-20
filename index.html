@@ -79,23 +79,47 @@
       <button onclick="startGame()">Play Again</button>
     </section>
 
-    <!-- Gallery -->
-    <section id="gallery">
-      <h1>📸 Our Sweet Memories 📸</h1>
-      <div class="slideshow-container">
-        <div class="gallery-slide active"><img src="images/first.JPG" /></div>
-        <div class="gallery-slide"><img src="images/second.JPG" /></div>
-        <div class="gallery-slide"><img src="images/third.JPG" /></div>
-        <div class="gallery-slide"><img src="images/xoxo.JPEG" /></div>
-        <div class="gallery-slide"><img src="images/heart.JPEG" /></div>
-        <div class="gallery-slide"><img src="images/club.JPEG" /></div>
-        <div class="gallery-slide"><img src="images/Life4Cuts.JPG" /></div>
-        <div class="gallery-slide"><img src="images/elevator.JPG" /></div>
-        <div class="gallery-slide"><img src="images/subway.JPG" /></div>
-        <a class="prev" onclick="plusSlides(-1)">❮</a>
-        <a class="next" onclick="plusSlides(1)">❯</a>
-      </div>
-    </section>
+<!-- Gallery -->
+<section id="gallery">
+  <h1>📸 Our Sweet Memories 📸</h1>
+  <div class="slideshow-container">
+    <div class="gallery-slide" onclick="openModal(this)">
+      <img src="images/first.JPG" alt="First Image">
+    </div>
+    <div class="gallery-slide" onclick="openModal(this)">
+      <img src="images/second.JPG" alt="Second Image">
+    </div>
+    <div class="gallery-slide" onclick="openModal(this)">
+      <img src="images/third.JPG" alt="Third Image">
+    </div>
+    <div class="gallery-slide" onclick="openModal(this)">
+      <img src="images/xoxo.JPEG" alt="Xoxo Image">
+    </div>
+    <div class="gallery-slide" onclick="openModal(this)">
+      <img src="images/heart.JPEG" alt="Heart Image">
+    </div>
+    <div class="gallery-slide" onclick="openModal(this)">
+      <img src="images/club.JPEG" alt="Club Image">
+    </div>
+    <div class="gallery-slide" onclick="openModal(this)">
+      <img src="images/Life4Cuts.JPG" alt="Life Cuts Image">
+    </div>
+    <div class="gallery-slide" onclick="openModal(this)">
+      <img src="images/elevator.JPG" alt="Elevator Image">
+    </div>
+    <div class="gallery-slide" onclick="openModal(this)">
+      <img src="images/subway.JPG" alt="Subway Image">
+    </div>
+    <a class="prev" onclick="plusSlides(-1)">❮</a>
+    <a class="next" onclick="plusSlides(1)">❯</a>
+  </div>
+</section>
+
+<!-- Modal for Full Image -->
+<div id="galleryModal" class="gallery-modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <img id="modalImage" src="" alt="Full View">
+</div>
     
     <!-- Quiz -->
       <section id="quiz">
@@ -173,21 +197,20 @@
       }
     });
 
-    // Slideshow
-    let slideIndex = 0;
-    function plusSlides(n) {
-      showSlides(slideIndex += n);
-    }
+    <!-- JavaScript for Modal -->
+<script>
+  // Function to open the modal with the clicked image
+  function openModal(imageElement) {
+    const modal = document.getElementById("galleryModal");
+    const modalImage = document.getElementById("modalImage");
+    modal.style.display = "flex";
+    modalImage.src = imageElement.querySelector("img").src;
+  }
 
-    function showSlides(n) {
-      const slides = document.querySelectorAll('.gallery-slide');
-      if (n >= slides.length) slideIndex = 0;
-      if (n < 0) slideIndex = slides.length - 1;
-      slides.forEach(slide => slide.classList.remove('active'));
-      slides[slideIndex].classList.add('active');
-    }
-
-    showSlides(slideIndex);
+  // Function to close the modal
+  function closeModal() {
+    document.getElementById("galleryModal").style.display = "none";
+  }
 
 // Lightbox
 function expandImage(imgElement) {
