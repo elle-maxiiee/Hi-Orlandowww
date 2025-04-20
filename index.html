@@ -14,6 +14,7 @@
       <input type="password" id="password" placeholder="Password" />
       <button onclick="login()">Login</button>
       <p id="error" style="color: red; margin-top: 10px;"></p>
+    </div>
   </div>
 
   <div id="mainContent" style="display:none;">
@@ -136,6 +137,9 @@
   </div>
  
   <script>
+  <!-- All your sections, etc -->
+
+<script>
   function login() {
     const user = document.getElementById('username').value.trim();
     const pass = document.getElementById('password').value.trim();
@@ -144,8 +148,8 @@
     if (user === 'Orlandow' && pass === 'GandaNgGFKoMen') {
       document.getElementById('loginPage').style.display = 'none';
       document.getElementById('mainContent').style.display = 'block';
-      errorElement.innerText = ''; // clear error message if login is successful
-      showSection('home'); // only if you have this function defined
+      errorElement.innerText = '';
+      showSection('home'); // Make sure this function exists too
     } else {
       errorElement.innerText = 'WHO YOU IMPOSTOR?!';
     }
