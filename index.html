@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hi Orlandowww</title>
-   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body oncontextmenu="return false">
+
   <div id="loginPage">
     <div id="loginContainer">
       <h2>HIIIII LOVIEEE!!! 💚</h2>
@@ -24,8 +25,11 @@
       <a onclick="showSection('game')">🎮 Heart Catcher Game</a>
       <a onclick="showSection('gallery')">📸 Photo Gallery</a>
       <a onclick="showSection('playlist')">🎶 Our Playlist</a>
+      <a onclick="showSection('quiz')">❓ Interactive Quiz</a>
+      <a onclick="showSection('heartMessages')">💖 Heart Messages</a>
     </nav>
 
+    <!-- Home Section -->
     <section id="home" class="active">
       <h1>HELLO ORLANDO LOPEZZZZZZ 💚</h1>
       <img src="images/homepage.png" class="home-image">
@@ -35,6 +39,7 @@
       <p> SO YES, YOU OVER ANYONE! </p>
     </section>
 
+    <!-- Reasons I Love You Section -->
     <section id="reasons">
       <h1>💖 Reasons I Love You 💖</h1>
       <div class="card-container">
@@ -44,27 +49,11 @@
             <div class="card-back">Kasi ikaw si Orlando</div>
           </div>
         </div>
-        <div class="flashcard" onclick="flipCard(this)">
-          <div class="card-inner">
-            <div class="card-front">Tap to Reveal</div>
-            <div class="card-back">Kasi love kita mga bente?</div>
-          </div>
-        </div>
-        <div class="flashcard" onclick="flipCard(this)">
-          <div class="card-inner">
-            <div class="card-front">Tap to Reveal</div>
-            <div class="card-back">Kasi naaaway kita palagi</div>
-          </div>
-        </div>
-        <div class="flashcard" onclick="flipCard(this)">
-          <div class="card-inner">
-            <div class="card-front">Tap to Reveal</div>
-            <div class="card-back">I love because you love me even I'm big naaaa</div>
-          </div>
-        </div>
+        <!-- Add other flashcards here -->
       </div>
     </section>
 
+    <!-- Heart Catcher Game Section -->
     <section id="game">
       <h1>❤️ Catch the Hearts ❤️</h1>
       <p id="score">Hearts Caught: 0</p>
@@ -75,27 +64,55 @@
       <button onclick="startGame()">Play Again</button>
     </section>
 
+    <!-- Photo Gallery Section -->
     <section id="gallery">
       <h1>📸 Our Sweet Memories 📸</h1>
-      <div class="slideshow-container">
-        <button class="prev" onclick="changeSlide(-1)">❮</button>
-        <img class="gallery-slide" src="images/first.JPG" alt="Before Sports Fest">
-        <img class="gallery-slide" src="images/second.JPG" alt="After The AOT: The Last Attack">
-        <img class="gallery-slide" src="images/third.JPG" alt="Takas sa club">
-        <img class="gallery-slide" src="images/xoxo.JPEG" alt="TechnoBytes">
-        <img class="gallery-slide" src="images/heart.JPEG" alt="TechnoBytes">
-        <img class="gallery-slide" src="images/club.JPEG" alt="TechnoBytes">
-        <img class="gallery-slide" src="images/Life4Cuts.JPG" alt="SM Sucat">
-        <img class="gallery-slide" src="images/elevator.JPG" alt="SM Dasma">
-        <img class="gallery-slide" src="images/subway.JPG" alt="SM Dasma">
-        <button class="next" onclick="changeSlide(1)">❯</button>
+      <div class="gallery">
+        <img src="images/first.JPG" alt="Before Sports Fest">
+        <img src="images/second.JPG" alt="After The AOT: The Last Attack">
+        <!-- Add other images here -->
       </div>
     </section>
 
+    <!-- Playlist Section -->
     <section id="playlist">
       <h1>🎶 Our Playlist 🎶</h1>
       <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1imKjqM7PNPfezBK6FTyAO?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </section>
+
+    <!-- Interactive Quiz Section -->
+    <section id="quiz">
+      <h1>💖 Interactive Quiz 💖</h1>
+      <div id="quizContainer">
+        <div class="question">
+          <p>What’s my favorite color?</p>
+          <button onclick="checkAnswer('green')">Green</button>
+          <button onclick="checkAnswer('blue')">Blue</button>
+          <button onclick="checkAnswer('pink')">Pink</button>
+        </div>
+        <div class="question">
+          <p>When did we first meet?</p>
+          <button onclick="checkAnswer('2020')">2020</button>
+          <button onclick="checkAnswer('2021')">2021</button>
+          <button onclick="checkAnswer('2019')">2019</button>
+        </div>
+        <div id="quizResult" style="display:none;">
+          <p id="resultText"></p>
+          <button onclick="resetQuiz()">Try Again</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Heart Messages Section -->
+    <section id="heartMessages">
+      <h1>💖 Heart Messages 💖</h1>
+      <div id="heartMessagesContainer">
+        <div class="heartMessage">I love you, Orlando! 💖</div>
+        <div class="heartMessage">You make me smile every day! 😘</div>
+        <div class="heartMessage">You’re my everything! 💚</div>
+      </div>
+    </section>
+
   </div>
 
   <script>
@@ -160,39 +177,67 @@
       }, 500);
     }
 
-    // Basket movement
-    const basket = document.getElementById('basket');
-    let basketLeft = 50; // percent
+    // Interactive Quiz Logic
+    let correctAnswers = 0;
 
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'ArrowLeft') {
-        basketLeft = Math.max(0, basketLeft - 5);
-        basket.style.left = basketLeft + '%';
-      } else if (e.key === 'ArrowRight') {
-        basketLeft = Math.min(100, basketLeft + 5);
-        basket.style.left = basketLeft + '%';
+    function checkAnswer(answer) {
+      if (answer === 'green') {
+        correctAnswers++;
       }
-    });
+      // Add other questions' answers to validate here.
 
-    // Slideshow functionality
-    let currentSlide = 0;
-    const slides = document.querySelectorAll(".gallery-slide");
-
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.style.display = i === index ? "block" : "none";
-      });
+      if (correctAnswers === 2) {
+        document.getElementById('resultText').innerText = 'You know me well! 💚';
+      } else {
+        document.getElementById('resultText').innerText = 'Let’s try again! 😊';
+      }
+      document.getElementById('quizContainer').style.display = 'none';
+      document.getElementById('quizResult').style.display = 'block';
     }
 
-    function changeSlide(direction) {
-      currentSlide += direction;
-      if (currentSlide >= slides.length) currentSlide = 0;
-      if (currentSlide < 0) currentSlide = slides.length - 1;
-      showSlide(currentSlide);
+    function resetQuiz() {
+      correctAnswers = 0;
+      document.getElementById('quizContainer').style.display = 'block';
+      document.getElementById('quizResult').style.display = 'none';
     }
-
-    // Initialize slideshow
-    showSlide(currentSlide);
   </script>
+
+  <style>
+    #heartMessagesContainer {
+      text-align: center;
+      position: relative;
+      height: 200px;
+    }
+
+    .heartMessage {
+      position: absolute;
+      animation: floatHearts 5s ease-in-out infinite;
+      opacity: 0;
+    }
+
+    @keyframes floatHearts {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      25% { transform: translateY(-30px) scale(1.1); opacity: 0.8; }
+      50% { transform: translateY(-60px) scale(1.2); opacity: 0.6; }
+      75% { transform: translateY(-90px) scale(1.3); opacity: 0.4; }
+      100% { transform: translateY(-120px) scale(1.4); opacity: 0; }
+    }
+
+    .heart {
+      position: absolute;
+      top: 0;
+      width: 30px;
+      height: 30px;
+      background-color: red;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      animation: heartFall 3s linear forwards;
+    }
+
+    @keyframes heartFall {
+      0% { top: -30px; opacity: 1; }
+      100% { top: 90%; opacity: 0; }
+    }
+  </style>
+
 </body>
 </html>
