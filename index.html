@@ -137,31 +137,25 @@
   </div>
 
   <script>
-    <script>
-  function login() {
-    const user = document.getElementById('username').value.trim();
-    const pass = document.getElementById('password').value.trim();
-    const errorElement = document.getElementById('error');
+    document.getElementById("loginPage").style.display = "block";
 
-    if (user === 'Orlandow' && pass === 'GandaNgGFKoMen') {
-      // Hide the login page
-      document.getElementById('loginPage').style.display = 'none';
-      
-      // Show the main content
-      document.getElementById('mainContent').style.display = 'block';
-      
-      // Clear the error message if login is successful well si orly siya
-      errorElement.innerText = '';
-      
-      // Show the home section by default kasi wala lang
-      showSection('home');
-    } else {
-      // Show error message if login fails kasi impostor eh
-      errorElement.innerText = 'WHO YOU IMPOSTOR?!';
+    document.onkeydown = function(e) {
+      if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85)) {
+        return false;
+      }
+    };
+
+    function login() {
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+      if(user === 'Orlandow' && pass === 'GandaNgGFKoMen') {
+        document.getElementById('loginPage').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        showSection('home');
+      } else {
+        document.getElementById('error').innerText = 'WHO YOU IMPOSTOR?!';
+      }
     }
-  }
-</script>
-
     function showSection(id) {
       document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(id).classList.add('active');
