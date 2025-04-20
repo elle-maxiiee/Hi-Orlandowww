@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hi Orlandowww</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Little World</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body oncontextmenu="return false">
-
   <div id="loginPage">
     <div id="loginContainer">
       <h2>HIIIII LOVIEEE!!! 💚</h2>
@@ -18,7 +17,7 @@
     </div>
   </div>
 
-  <div id="mainContent">
+  <div id="mainContent" style="display:none;">
     <nav>
       <a onclick="showSection('home')">🏠 Home</a>
       <a onclick="showSection('reasons')">💌 Reasons</a>
@@ -72,11 +71,11 @@
     <!-- Heart Catcher Game -->
     <section id="game">
       <h1>❤️ Catch the Hearts ❤️</h1>
-     <p id="score">Hearts Caught: 0</p>
-      <div id="gameArea" style="position:relative;height:60vh;border:2px dashed #ff8a65;margin:20px;background:#ffecb3;overflow:hidden;">
+      <p id="score">Hearts Caught: 0</p>
+      <div id="gameArea">
         <div id="basket"></div>
       </div>
-      <div id="flashcard" style="display:none;background:#fff8e1;padding:20px;margin-top:20px;border:2px dashed #ffb74d;border-radius:15px;font-size:20px;">Okay, may hug ka latur 🤗</div>
+      <div id="flashcard">Okay, may hug ka latur 🤗</div>
       <button onclick="startGame()">Play Again</button>
     </section>
 
@@ -84,27 +83,22 @@
     <section id="gallery">
       <h1>📸 Our Sweet Memories 📸</h1>
       <div class="slideshow-container">
-        <div class="gallery-slide active"><img src="images/first.JPG" onclick="expandImage(this)" /></div>
-        <div class="gallery-slide"><img src="images/second.JPG" onclick="expandImage(this)" /></div>
-        <div class="gallery-slide"><img src="images/third.JPG" onclick="expandImage(this)" /></div>
-        <div class="gallery-slide"><img src="images/xoxo.JPEG" onclick="expandImage(this)" /></div>
-        <div class="gallery-slide"><img src="images/heart.JPEG" onclick="expandImage(this)" /></div>
-        <div class="gallery-slide"><img src="images/club.JPEG" onclick="expandImage(this)" /></div>
-        <div class="gallery-slide"><img src="images/Life4Cuts.JPG" onclick="expandImage(this)" /></div>
-        <div class="gallery-slide"><img src="images/elevator.JPG" onclick="expandImage(this)" /></div>
-        <div class="gallery-slide"><img src="images/subway.JPG" onclick="expandImage(this)" /></div>
+        <div class="gallery-slide active"><img src="images/first.JPG" /></div>
+        <div class="gallery-slide"><img src="images/second.JPG" /></div>
+        <div class="gallery-slide"><img src="images/third.JPG" /></div>
+        <div class="gallery-slide"><img src="images/xoxo.JPEG" /></div>
+        <div class="gallery-slide"><img src="images/heart.JPEG" /></div>
+        <div class="gallery-slide"><img src="images/club.JPEG" /></div>
+        <div class="gallery-slide"><img src="images/Life4Cuts.JPG" /></div>
+        <div class="gallery-slide"><img src="images/elevator.JPG" /></div>
+        <div class="gallery-slide"><img src="images/subway.JPG" /></div>
         <a class="prev" onclick="plusSlides(-1)">❮</a>
         <a class="next" onclick="plusSlides(1)">❯</a>
-      </div>
-
-      <!-- Lightbox for full image view -->
-      <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <img id="lightbox-img">
       </div>
     </section>
 
     <!-- Messages -->
-    <section id="animatedMessages">
+     <section id="animatedMessages">
       <h1>💌 Animated Heart Messages 💌</h1>
       <div class="heart-message-container" id="heartMessages">
         <div class="heart-msg">💖 You’re the reason why this world is not so bad after all</div>
@@ -120,9 +114,9 @@
         <button onclick="addHeartMessage()">Add Message</button>
       </div>
     </section>
-
+    
     <!-- Quiz -->
-    <section id="quiz">
+      <section id="quiz">
       <h1>🎉 Random Questions na P'wedeng Pag-awayan 🎉</h1>
       <div id="quiz-container" class="quiz-box"></div>
       <p id="quiz-feedback"></p>
@@ -137,19 +131,11 @@
     </section>
   </div>
 
-<script>
-    document.getElementById("loginPage").style.display = "block";
-
-    document.onkeydown = function(e) {
-      if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85)) {
-        return false;
-      }
-    };
-
+  <script>
     function login() {
       const user = document.getElementById('username').value;
       const pass = document.getElementById('password').value;
-      if(user === 'Orlandow' && pass === 'GandaNgGFKoMen') {
+      if (user === 'Orlandow' && pass === 'GandaNgGFKoMen') {
         document.getElementById('loginPage').style.display = 'none';
         document.getElementById('mainContent').style.display = 'block';
         showSection('home');
@@ -157,6 +143,7 @@
         document.getElementById('error').innerText = 'WHO YOU IMPOSTOR?!';
       }
     }
+
     function showSection(id) {
       document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(id).classList.add('active');
@@ -172,18 +159,17 @@
       const heart = document.createElement('div');
       heart.className = 'heart';
       heart.style.left = Math.random() * 90 + '%';
-      heart.style.animation = 'fall 3s linear forwards';
       heart.onclick = function() {
         caught++;
         document.getElementById('score').innerText = 'Hearts Caught: ' + caught;
         heart.remove();
-        if (caught === 10) {
-          document.getElementById('flashcard').style.display = 'block';
-        }
+        if (caught === 10) document.getElementById('flashcard').style.display = 'block';
       };
       document.getElementById('gameArea').appendChild(heart);
-      setTimeout(() => heart.remove
-      function startGame() {
+      setTimeout(() => heart.remove(), 4000);
+    }
+
+    function startGame() {
       caught = 0;
       document.getElementById('score').innerText = 'Hearts Caught: 0';
       document.getElementById('flashcard').style.display = 'none';
@@ -195,10 +181,11 @@
         }
       }, 500);
     }
+
     document.addEventListener('mousemove', (e) => {
       const basket = document.getElementById('basket');
       if (basket) {
-        basket.style.left = ${e.clientX}px;
+        basket.style.left = `${e.clientX}px`;
       }
     });
 
@@ -235,7 +222,7 @@ function closeLightbox() {
 }
 
     // Heart Messages
-    setInterval(() => {
+   setInterval(() => {
    const messages = [
   "You’re the reason why this world is not so bad after all",
   "You love me even when I am big na",
