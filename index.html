@@ -148,19 +148,22 @@
     }
 
     // Game
-    let caught = 0;
+       let caught = 0;
     function createHeart() {
       const heart = document.createElement('div');
       heart.className = 'heart';
       heart.style.left = Math.random() * 90 + '%';
+      heart.style.animation = 'fall 3s linear forwards';
       heart.onclick = function() {
         caught++;
         document.getElementById('score').innerText = 'Hearts Caught: ' + caught;
         heart.remove();
-        if (caught === 10) document.getElementById('flashcard').style.display = 'block';
+        if (caught === 10) {
+          document.getElementById('flashcard').style.display = 'block';
+        }
       };
       document.getElementById('gameArea').appendChild(heart);
-      setTimeout(() => heart.remove(), 4000);
+      setTimeout(() => heart.remove(), 3000);
     }
 
     function startGame() {
@@ -175,7 +178,6 @@
         }
       }, 500);
     }
-
     document.addEventListener('mousemove', (e) => {
       const basket = document.getElementById('basket');
       if (basket) {
@@ -212,6 +214,7 @@
     function checkAnswer(button, isCorrect) {
       document.getElementById('quizFeedback').innerText = isCorrect ? 'YAY! You got it right 🥰' : 'Oopsie! Try again!';
     }
+    
   </script>
 </body>
 </html>
