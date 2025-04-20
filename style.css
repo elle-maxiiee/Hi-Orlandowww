@@ -203,46 +203,42 @@ section.active {
 /* Slideshow Gallery */
 .slideshow-container {
   position: relative;
-  max-width: 720px;
-  margin: auto;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .gallery-slide {
   display: none;
-}
-
-.gallery-slide.active {
-  display: block;
-}
-
-.gallery-slide img {
   width: 100%;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 600px;
+  height: auto;
+  border-radius: 15px;
 }
 
 .prev, .next {
   cursor: pointer;
   position: absolute;
-  top: 45%;
-  width: auto;
+  top: 50%;
+  background-color: #80cbc4;
+  color: white;
+  border: none;
   padding: 16px;
-  margin-top: -22px;
-  color: #fff;
   font-weight: bold;
-  font-size: 24px;
-  transition: 0.3s ease;
+  font-size: 18px;
   border-radius: 0 3px 3px 0;
-  background-color: rgba(0,0,0,0.3);
+  user-select: none;
+  transform: translateY(-50%);
+}
+
+.prev {
+  left: 0;
+  border-radius: 3px 0 0 3px;
 }
 
 .next {
   right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.6);
+  border-radius: 0 3px 3px 0;
 }
 
 /* Quiz Section */
