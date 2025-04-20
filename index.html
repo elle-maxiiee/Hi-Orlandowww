@@ -6,156 +6,6 @@
   <title>Hi Orlandowww</title>
    <link rel="stylesheet" href="style.css">
 </head>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #f0fff5;
-    }
-    nav {
-      background-color: #b2dfdb;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 10px;
-    }
-    nav a {
-      text-decoration: none;
-      color: #004d40;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    section {
-      display: none;
-      padding: 40px;
-      text-align: center;
-    }
-    .active {
-      display: block;
-    }
-    .heart {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      background: radial-gradient(circle at 10px 10px, red, pink);
-      border-radius: 50% 50% 0 0;
-      transform: rotate(-45deg);
-    }
-    .heart::before, .heart::after {
-      content: "";
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      background: radial-gradient(circle at 10px 10px, red, pink);
-      border-radius: 50%;
-    }
-    .heart::before {
-      top: -15px;
-      left: 0;
-    }
-    .heart::after {
-      left: 15px;
-      top: 0;
-    }
-    @keyframes fall {
-      to {
-        transform: translateY(80vh);
-        opacity: 0;
-      }
-    }
-    .gallery img {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 15px;
-      margin: 10px;
-      transition: transform 0.3s ease;
-    }
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-    #loginPage, #mainContent {
-      display: none;
-    }
-    #loginContainer {
-      background-color: #ffffff;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      text-align: center;
-      margin: 10% auto;
-      width: 300px;
-    }
-    input, button {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-    }
-    button {
-      background-color: #80cbc4;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    .card-container {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-top: 20px;
-    }
-    .flashcard {
-      width: 200px;
-      height: 120px;
-      perspective: 1000px;
-    }
-    .card-inner {
-      width: 100%;
-      height: 100%;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-      position: relative;
-    }
-    .card-inner.flipped {
-      transform: rotateY(180deg);
-    }
-    .card-front, .card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 15px;
-      backface-visibility: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      padding: 10px;
-    }
-    .card-front {
-      background-color: #c8e6c9;
-      color: #2e7d32;
-    }
-    .card-back {
-      background-color: #a5d6a7;
-      color: #1b5e20;
-      transform: rotateY(180deg);
-    }
-    #basket {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 40px;
-      background: #ffcc80;
-      border-radius: 10px 10px 0 0;
-      box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
-    }
-  </style>
-</head>
 <body oncontextmenu="return false">
   <div id="loginPage">
     <div id="loginContainer">
@@ -183,7 +33,6 @@
       <p>If you're still asking yourself why you? Well, it's because of even after countless of mood  </p>
       <p>swings, crazy demand, and nonsense arguments, you're still here </p>
       <p> SO YES, YOU OVER ANYONE! </p>
-      </p> 
     </section>
 
     <section id="reasons">
@@ -228,16 +77,18 @@
 
     <section id="gallery">
       <h1>📸 Our Sweet Memories 📸</h1>
-      <div class="gallery">
-       <img src="images/first.JPG" alt="Before Sports Fest">
-  <img src="images/second.JPG" alt="After The AOT: The Last Attack">
-  <img src="images/third.JPG" alt="Takas sa club">
-  <img src="images/xoxo.JPEG" alt="TechnoBytes">
-  <img src="images/heart.JPEG" alt="TechnoBytes">
-  <img src="images/club.JPEG" alt="TechnoBytes">
-  <img src="images/Life4Cuts.JPG" alt="SM Sucat">
-  <img src="images/elevator.JPG" alt="SM Dasma">
-  <img src="images/subway.JPG" alt="SM Dasma">
+      <div class="slideshow-container">
+        <button class="prev" onclick="changeSlide(-1)">❮</button>
+        <img class="gallery-slide" src="images/first.JPG" alt="Before Sports Fest">
+        <img class="gallery-slide" src="images/second.JPG" alt="After The AOT: The Last Attack">
+        <img class="gallery-slide" src="images/third.JPG" alt="Takas sa club">
+        <img class="gallery-slide" src="images/xoxo.JPEG" alt="TechnoBytes">
+        <img class="gallery-slide" src="images/heart.JPEG" alt="TechnoBytes">
+        <img class="gallery-slide" src="images/club.JPEG" alt="TechnoBytes">
+        <img class="gallery-slide" src="images/Life4Cuts.JPG" alt="SM Sucat">
+        <img class="gallery-slide" src="images/elevator.JPG" alt="SM Dasma">
+        <img class="gallery-slide" src="images/subway.JPG" alt="SM Dasma">
+        <button class="next" onclick="changeSlide(1)">❯</button>
       </div>
     </section>
 
@@ -308,6 +159,40 @@
         }
       }, 500);
     }
+
+    // Basket movement
+    const basket = document.getElementById('basket');
+    let basketLeft = 50; // percent
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft') {
+        basketLeft = Math.max(0, basketLeft - 5);
+        basket.style.left = basketLeft + '%';
+      } else if (e.key === 'ArrowRight') {
+        basketLeft = Math.min(100, basketLeft + 5);
+        basket.style.left = basketLeft + '%';
+      }
+    });
+
+    // Slideshow functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".gallery-slide");
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.style.display = i === index ? "block" : "none";
+      });
+    }
+
+    function changeSlide(direction) {
+      currentSlide += direction;
+      if (currentSlide >= slides.length) currentSlide = 0;
+      if (currentSlide < 0) currentSlide = slides.length - 1;
+      showSlide(currentSlide);
+    }
+
+    // Initialize slideshow
+    showSlide(currentSlide);
   </script>
 </body>
 </html>
