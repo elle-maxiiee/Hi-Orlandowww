@@ -12,9 +12,8 @@
       <h2>HIIIII LOVIEEE!!! 💚</h2>
       <input type="text" id="username" placeholder="Username" />
       <input type="password" id="password" placeholder="Password" />
-      <button type="button" onclick="alert('LOVIEEEE')">Login</button>
-      <p id="error" style="color:red;"></p>
-    </div>
+      <button onclick="login()">Login</button>
+      <p id="error" style="color: red; margin-top: 10px;"></p>
   </div>
 
   <div id="mainContent" style="display:none;">
@@ -135,19 +134,22 @@
       <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1imKjqM7PNPfezBK6FTyAO?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </section>
   </div>
-
+ 
   <script>
-    function login() {
-      const user = document.getElementById('username').value;
-      const pass = document.getElementById('password').value;
-      if (user === 'Orlandow' && pass === 'GandaNgGFKoMen') {
-        document.getElementById('loginPage').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
-        showSection('home');
-      } else {
-        document.getElementById('error').innerText = 'WHO YOU IMPOSTOR?!';
-      }
+  function login() {
+    const user = document.getElementById('username').value.trim();
+    const pass = document.getElementById('password').value.trim();
+    const errorElement = document.getElementById('error');
+
+    if (user === 'Orlandow' && pass === 'GandaNgGFKoMen') {
+      document.getElementById('loginPage').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+      errorElement.innerText = ''; // clear error message if login is successful
+      showSection('home'); // only if you have this function defined
+    } else {
+      errorElement.innerText = 'WHO YOU IMPOSTOR?!';
     }
+  }
 
     function showSection(id) {
       document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
