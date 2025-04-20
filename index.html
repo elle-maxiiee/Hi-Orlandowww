@@ -228,10 +228,72 @@
     }, 400);
 
     // Quiz
-    function checkAnswer(button, isCorrect) {
-      document.getElementById('quizFeedback').innerText = isCorrect ? 'Galing nandadaya nanaman kasi' : 'Impostor talaga yan sha';
-    }
-    
+    const quizData = [
+  {
+    question: "What is my favorite drink?",
+    options: ["Milk Tea", "Coffee", "Softdrinks"],
+    answer: "Milk Tea"
+  },
+  {
+    question: "Who are you?",
+    options: ["Orlando Lopez", "Orly", "Lovie"],
+    answer: "Lovie"
+  },
+  {
+    question: "Anong oras ako natutulog?",
+    options: ["11:00 PM", "1:00 AM", "12:30 AM"],
+    answer: "12:30 AM"
+  }
+];
+
+let currentQuestionIndex = 0;
+
+function loadQuestion() {
+  const currentQuestion = quizData[currentQuestionIndex];
+  document.getElementById("question").innerText = currentQuestion.question;
+
+  // Clear previous options
+  const optionsContainer = document.getElementById("options");
+  optionsContainer.innerHTML = '';
+
+  // Create new options as clickable buttons
+  currentQuestion.options.forEach(option => {
+    const optionButton = document.createElement('button');
+    optionButton.innerText = option;
+    optionButton.classList.add('quiz-option');
+    optionButton.onclick = () => checkAnswer(option);
+    optionsContainer.appendChild(optionButton);
+  });
+
+  // Hide the next button until an answer is selected
+  document.getElementById("nextButton").style.display = "none";
+}
+
+function checkAnswer(selectedOption) {
+  const correctAnswer = quizData[currentQuestionIndex].answer;
+  if (selectedOption === correctAnswer) {
+    alert("Galing nandaya to sha");
+  } else {
+    alert("Impostor talaga");
+  }
+
+  // Show the next button after an answer is selected
+  document.getElementById("nextButton").style.display = "inline-block";
+}
+
+function nextQuestion() {
+  currentQuestionIndex++;
+  if (currentQuestionIndex < quizData.length) {
+    loadQuestion(); // Load the next question
+  } else {
+    alert("Galing, p'wede na mag-away! 🎉");
+    // Optionally, you could show the result or restart the quiz
+  }
+}
+
+// Initial load of the first question
+loadQuestion();
+  
   </script>
 </body>
 </html>
