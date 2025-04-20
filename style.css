@@ -1,0 +1,230 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #e6f9e6;
+  color: #333;
+}
+
+nav {
+  background-color: #cceccc;
+  padding: 10px 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav a {
+  text-decoration: none;
+  color: #2e5f2e;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #b2e2b2;
+}
+
+section {
+  display: none;
+  padding: 40px 20px;
+  animation: fadeIn 0.6s ease;
+}
+
+section.active {
+  display: block;
+}
+
+/* Login Styling */
+#loginPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #dfffdc;
+}
+
+#loginContainer {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+#loginContainer input {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+#loginContainer button {
+  padding: 10px 20px;
+  background-color: #92d892;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#loginContainer button:hover {
+  background-color: #6fcf6f;
+}
+
+/* Flashcards */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.flashcard {
+  width: 180px;
+  height: 120px;
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+}
+
+.card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  background-color: #bdf0bd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+/* Game area */
+#gameArea {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background-color: #f1fdf1;
+  overflow: hidden;
+  border: 2px dashed #a1cda1;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.heart {
+  position: absolute;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle at center, #ff5f96 0%, #ff8fa3 100%);
+  border-radius: 50% 50% 0 0;
+  transform: rotate(45deg);
+  animation: fall 3s linear forwards;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle at center, #ff5f96 0%, #ff8fa3 100%);
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -15px;
+  left: 0;
+}
+
+.heart::after {
+  left: -15px;
+  top: 0;
+}
+
+#basket {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  width: 60px;
+  height: 40px;
+  margin-left: -30px;
+  background-color: #6fcf6f;
+  border-radius: 20px;
+  border: 2px solid #469946;
+}
+
+#basket:hover {
+  cursor: move;
+}
+
+#flashcard {
+  display: none;
+  margin: 20px auto;
+  padding: 20px;
+  width: fit-content;
+  background: #fff7d6;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Gallery */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.gallery img {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Animations */
+@keyframes fall {
+  0% { top: 0; }
+  100% { top: 300px; opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
