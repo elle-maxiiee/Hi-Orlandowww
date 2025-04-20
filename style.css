@@ -320,7 +320,38 @@ section.active {
   font-weight: bold;
   margin-top: 15px;
 }
+.quiz-option {
+  background-color: #8ed1b5;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  font-size: 16px;
+}
 
+.quiz-option:hover {
+  background-color: #6dc49c;
+}
+
+#nextButton {
+  background-color: #81c784;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: none; /* Hide until an answer is selected */
+  font-size: 16px;
+}
+
+#nextButton:hover {
+  background-color: #66bb6a;
+}
 /* Playlist */
 #playlist iframe {
   display: block;
