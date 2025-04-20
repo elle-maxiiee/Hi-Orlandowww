@@ -83,7 +83,7 @@ section.active {
 .home-image {
   display: block;
   max-width: 100%;
-  width: 720px; 
+  width: 720px;
   height: 1280px;
   margin: 20px auto;
   border-radius: 20px;
@@ -206,6 +206,60 @@ section.active {
 .gallery img:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Interactive Quiz Styles */
+#quizContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #ffecb3;
+  border-radius: 10px;
+}
+
+.question {
+  font-size: 1.5em;
+}
+
+.question button {
+  margin-top: 10px;
+  background-color: #ff7043;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#quizResult {
+  display: none;
+  padding: 20px;
+  background-color: #fff8e1;
+  margin-top: 20px;
+  border: 2px dashed #ffb74d;
+  border-radius: 10px;
+  font-size: 1.5em;
+}
+
+/* Heart Messages Styles */
+#heartMessagesContainer {
+  text-align: center;
+  position: relative;
+  height: 200px;
+}
+
+.heartMessage {
+  position: absolute;
+  animation: floatHearts 5s ease-in-out infinite;
+  opacity: 0;
+}
+
+@keyframes floatHearts {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  25% { transform: translateY(-30px) scale(1.1); opacity: 0.8; }
+  50% { transform: translateY(-60px) scale(1.2); opacity: 0.6; }
+  75% { transform: translateY(-90px) scale(1.3); opacity: 0.4; }
+  100% { transform: translateY(-120px) scale(1.4); opacity: 0; }
 }
 
 /* Animation */
